@@ -1,7 +1,7 @@
 # Учебный проект «Угадай мелодию» [![Build status][travis-image]][travis-url]
 
 * Студент: [Инна Подистова](https://up.htmlacademy.ru/react/4/user/1001011).
-* Наставник: `Неизвестно`.
+* Наставник: [Эльдар Амантай](https://up.htmlacademy.ru/react/4/user/1480701).
 
 ---
 
