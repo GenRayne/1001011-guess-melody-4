@@ -15,7 +15,6 @@ const App = ({errorsCount}) => {
 
 App.propTypes = {
   errorsCount: PropTypes.number.isRequired,
-  onPlayButtonClick: PropTypes.func.isRequired
 };
 
 export default App;

@@ -1,11 +1,6 @@
 import React from 'react';
-import Adapter from 'enzyme-adapter-react-16';
-import Enzyme, {shallow} from 'enzyme';
+import {shallow} from 'enzyme';
 import WelcomeScreen from './welcome-screen.jsx';
-
-Enzyme.configure({
-  adapter: new Adapter()
-});
 
 describe(`Play button click`, () => {
   it(`presses Play button`, () => {
