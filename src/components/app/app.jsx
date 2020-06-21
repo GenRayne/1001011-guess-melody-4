@@ -1,13 +1,13 @@
 import React from 'react';
 import {BrowserRouter, Route, Switch} from 'react-router-dom';
-import PropTypes from 'prop-types';
+import {array, number} from 'prop-types';
 import WelcomeScreen from '../welcome-screen/welcome-screen.jsx';
-import QuestionArtist from '../question-artist/question-artist.jsx';
-import QuestionGenre from '../question-genre/question-genre.jsx';
+import QuestionArtistScreen from '../question-artist/question-artist.jsx';
+import QuestionGenreScreen from '../question-genre/question-genre.jsx';
 
 const playButtonClickHandler = () => {};
 
-const App = ({errorsCount}) => {
+const App = ({errorsCount, questions}) => {
   return (
     <BrowserRouter>
       <Switch>
@@ -18,10 +18,10 @@ const App = ({errorsCount}) => {
           />
         </Route>
         <Route exact path="/artist">
-          <QuestionArtist />
+          <QuestionArtistScreen question={questions[1]} onAnswer={() => {}} />
         </Route>
         <Route exact path="/genre">
-          <QuestionGenre />
+          <QuestionGenreScreen question={questions[0]} onAnswer={() => {}} />
         </Route>
       </Switch>
     </BrowserRouter>
@@ -29,7 +29,8 @@ const App = ({errorsCount}) => {
 };
 
 App.propTypes = {
-  errorsCount: PropTypes.number.isRequired,
+  errorsCount: number.isRequired,
+  questions: array.isRequired
 };
 
 export default App;

@@ -1,10 +1,8 @@
-import React from 'react';
-import renderer from 'react-test-renderer';
-import App from './app.jsx';
+import {QuestionType} from '../const.js';
 
-const questions = [
+export default [
   {
-    type: `genre`,
+    type: QuestionType.GENRE,
     genre: `rock`,
     answers: [
       {
@@ -30,7 +28,7 @@ const questions = [
     ]
   },
   {
-    type: `artist`,
+    type: QuestionType.ARTIST,
     song: {
       artist: `Jim Beam`,
       src: `https://upload.wikimedia.org/wikipedia/commons/4/4e/BWV_543-fugue.ogg`
@@ -54,18 +52,3 @@ const questions = [
     ]
   }
 ];
-
-describe(`Render App`, () => {
-  it(`renders App`, () => {
-    const tree = renderer
-      .create(
-          <App
-            errorsCount={3}
-            questions={questions}
-          />
-      )
-      .toJSON();
-
-    expect(tree).toMatchSnapshot();
-  });
-});
