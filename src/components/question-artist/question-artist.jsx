@@ -36,7 +36,7 @@ const QuestionArtistScreen = ({question, onAnswer}) => {
         </div>
 
         <form className="game__artist">
-          {answers.map((answer) => <AnswerArtist answer={answer} key={answer.id} onAnswer={onAnswer} />)}
+          {answers.map((answer) => <AnswerArtist answer={answer} question={question} key={answer.id} onAnswer={onAnswer} />)}
         </form>
       </section>
     </section>

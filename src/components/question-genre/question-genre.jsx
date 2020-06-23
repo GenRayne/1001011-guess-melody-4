@@ -34,7 +34,13 @@ const QuestionGenreScreen = ({question, onAnswer}) => {
 
       <section className="game__screen">
         <h2 className="game__title">Выберите инди-рок треки</h2>
-        <form className="game__tracks">
+        <form
+          className="game__tracks"
+          onSubmit={(evt) => {
+            evt.preventDefault();
+            onAnswer(question, userAnswers);
+          }}
+        >
           {answers.map((answer) => (
             <AnswerGenre
               key={answer.id}
