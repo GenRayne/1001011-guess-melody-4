@@ -14,41 +14,39 @@ const App = ({errorsCount, questions}) => {
   const handlePlayButtonClick = useCallback(() => setStep(0), []);
   const handleAnswer = useCallback(() => setStep((prevStep) => prevStep + 1), []);
 
-  const renderGameScreen = useCallback(
-      () => {
-        const question = questions[step];
+  const renderGameScreen = () => {
+    const question = questions[step];
 
-        if (step === START_STEP || step >= questions.length) {
+    if (step === START_STEP || step >= questions.length) {
+      return (
+        <WelcomeScreen
+          errorsCount={errorsCount}
+          onPlayButtonClick={handlePlayButtonClick}
+        />
+      );
+    }
+
+    if (question) {
+      switch (question.type) {
+        case QuestionType.ARTIST:
           return (
-            <WelcomeScreen
-              errorsCount={errorsCount}
-              onPlayButtonClick={handlePlayButtonClick}
+            <QuestionArtistScreen
+              question={questions[1]}
+              onAnswer={handleAnswer}
             />
           );
-        }
+        case QuestionType.GENRE:
+          return (
+            <QuestionGenreScreen
+              question={questions[0]}
+              onAnswer={handleAnswer}
+            />
+          );
+      }
+    }
 
-        if (question) {
-          switch (question.type) {
-            case QuestionType.ARTIST:
-              return (
-                <QuestionArtistScreen
-                  question={questions[1]}
-                  onAnswer={handleAnswer}
-                />
-              );
-            case QuestionType.GENRE:
-              return (
-                <QuestionGenreScreen
-                  question={questions[0]}
-                  onAnswer={handleAnswer}
-                />
-              );
-          }
-        }
-
-        return null;
-      }, [step]
-  );
+    return null;
+  };
 
   return (
     <BrowserRouter>

@@ -2,16 +2,20 @@ import React, {useState} from 'react';
 import {shape, string, arrayOf, func} from 'prop-types';
 import AnswerGenre from '../answer-genre/answer-genre.jsx';
 
-const initialUserAnswers = {
-  1: false,
-  2: false,
-  3: false,
-  4: false,
-};
-
 const QuestionGenreScreen = ({question, onAnswer}) => {
   const {answers} = question;
+  const initialUserAnswers = answers.reduce((acc, _item, i) => ({...acc, [i + 1]: false}), {});
+
   const [userAnswers, setUserAnswers] = useState(initialUserAnswers);
+
+  const handleGenreAnswer = (id) => {
+    setUserAnswers(() => ({...userAnswers, [id]: !userAnswers[id]}));
+  };
+
+  const handleSubmit = (evt) => {
+    evt.preventDefault();
+    onAnswer(question, userAnswers);
+  };
 
   return (
     <section className="game game--genre">
@@ -36,20 +40,17 @@ const QuestionGenreScreen = ({question, onAnswer}) => {
         <h2 className="game__title">Выберите инди-рок треки</h2>
         <form
           className="game__tracks"
-          onSubmit={(evt) => {
-            evt.preventDefault();
-            onAnswer(question, userAnswers);
-          }}
+          onSubmit={handleSubmit}
         >
-          {answers.map((answer) => (
+          {answers.map((answer, i) => (
             <AnswerGenre
               key={answer.id}
               answer={answer}
-              userAnswers={userAnswers}
-              setUserAnswers={setUserAnswers}
+              userAnswer={userAnswers[i + 1]}
+              onAnswerChange={handleGenreAnswer}
             />
           ))}
-          <button className="game__submit button" type="submit" onClick={onAnswer}>Ответить</button>
+          <button className="game__submit button" type="submit">Ответить</button>
         </form>
       </section>
     </section>

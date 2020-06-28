@@ -1,33 +1,7 @@
 import React from 'react';
 import renderer from 'react-test-renderer';
 import QuestionGenre from './question-genre.jsx';
-
-const question = {
-  type: `genre`,
-  genre: `rock`,
-  answers: [
-    {
-      id: `1`,
-      src: `https://upload.wikimedia.org/wikipedia/commons/4/4e/BWV_543-fugue.ogg`,
-      genre: `rock`,
-    },
-    {
-      id: `2`,
-      src: `https://upload.wikimedia.org/wikipedia/commons/4/4e/BWV_543-fugue.ogg`,
-      genre: `blues`,
-    },
-    {
-      id: `3`,
-      src: `https://upload.wikimedia.org/wikipedia/commons/4/4e/BWV_543-fugue.ogg`,
-      genre: `jazz`,
-    },
-    {
-      id: `4`,
-      src: `https://upload.wikimedia.org/wikipedia/commons/4/4e/BWV_543-fugue.ogg`,
-      genre: `rock`,
-    }
-  ]
-};
+import questions from '../../mocks/test-questions.js';
 
 const handleAnswer = () => {};
 
@@ -36,7 +10,7 @@ describe(`render QuestionGenre`, () => {
     const tree = renderer
       .create(
           <QuestionGenre
-            question={question}
+            question={questions[0]}
             onAnswer={handleAnswer}
           />
       )

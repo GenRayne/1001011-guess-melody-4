@@ -205,7 +205,6 @@ exports[`render QuestionGenre renders QuestionGenre 1`] = `
       </div>
       <button
         className="game__submit button"
-        onClick={[Function]}
         type="submit"
       >
         Ответить

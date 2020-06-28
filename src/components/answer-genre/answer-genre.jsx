@@ -1,8 +1,13 @@
 import React from 'react';
 import {shape, string, bool, func} from 'prop-types';
 
-const AnswerGenre = ({answer, userAnswers, setUserAnswers}) => {
+const AnswerGenre = ({answer, userAnswer, onAnswerChange}) => {
   const {id, src: audioSrc} = answer;
+
+  const handleAnswerChange = () => {
+    onAnswerChange(id);
+  };
+
   return (
     <div className="track">
       <button className="track__button track__button--play" type="button" />
@@ -16,15 +21,8 @@ const AnswerGenre = ({answer, userAnswers, setUserAnswers}) => {
           name="answer"
           value={`answer-${id}`}
           id={`answer-${id}`}
-          checked={userAnswers[id]}
-          onChange={() => {
-            setUserAnswers(() => (Object.assign(
-                {},
-                userAnswers,
-                {[id]: !userAnswers[id]}
-            )));
-            // Почему-то линтер не пропускает ({...userAnswers, [id]: !userAnswers[id]})
-          }}
+          checked={userAnswer}
+          onChange={handleAnswerChange}
         />
         <label className="game__check" htmlFor={`answer-${id}`}>Отметить</label>
       </div>
@@ -36,13 +34,8 @@ AnswerGenre.propTypes = {
   answer: shape({
     id: string,
   }),
-  userAnswers: shape({
-    1: bool,
-    2: bool,
-    3: bool,
-    4: bool,
-  }),
-  setUserAnswers: func,
+  userAnswer: bool,
+  onAnswerChange: func,
 };
 
 export default AnswerGenre;

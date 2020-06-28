@@ -3,6 +3,12 @@ import {string, func, shape, arrayOf} from 'prop-types';
 
 const AnswerArtist = ({answer, question, onAnswer}) => {
   const {id, artist, picture} = answer;
+
+  const handleInputChange = (evt) => {
+    evt.preventDefault();
+    onAnswer(question, answer);
+  };
+
   return (
     <div key={id} className="artist">
       <input
@@ -11,10 +17,7 @@ const AnswerArtist = ({answer, question, onAnswer}) => {
         name="answer"
         value={`artist-${id}`}
         id={`answer-${id}`}
-        onChange={(evt) => {
-          evt.preventDefault();
-          onAnswer(question, answer);
-        }}
+        onChange={handleInputChange}
       />
       <label className="artist__name" htmlFor={`answer-${id}`}>
         <img className="artist__picture" src={picture} alt={artist} />

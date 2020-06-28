@@ -8,12 +8,7 @@ const answer = {
   genre: `rock`,
 };
 
-const userAnswers = {
-  1: false,
-  2: false,
-  3: false,
-  4: false,
-};
+const userAnswer = true;
 
 describe(`render AnswerGenre`, () => {
   it(`renders AnswerGenre`, () => {
@@ -21,8 +16,8 @@ describe(`render AnswerGenre`, () => {
       .create(
           <AnswerGenre
             answer={answer}
-            userAnswers={userAnswers}
-            setUserAnswers={() => {}}
+            userAnswer={userAnswer}
+            onAnswerChange={() => {}}
           />
       )
       .toJSON();
