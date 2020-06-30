@@ -4,9 +4,8 @@ import AnswerGenre from '../answer-genre/answer-genre.jsx';
 
 const QuestionGenreScreen = ({question, onAnswer}) => {
   const {answers} = question;
-  const initialUserAnswers = answers.reduce((acc, _item, i) => ({...acc, [i + 1]: false}), {});
 
-  const [userAnswers, setUserAnswers] = useState(initialUserAnswers);
+  const [userAnswers, setUserAnswers] = useState({});
 
   const handleGenreAnswer = (id) => {
     setUserAnswers(() => ({...userAnswers, [id]: !userAnswers[id]}));

@@ -3,10 +3,6 @@ import {mount} from 'enzyme';
 import QuestionArtist from './question-artist.jsx';
 import questions from '../../mocks/test-questions.js';
 
-const mockEvent = {
-  preventDefault() {}
-};
-
 describe(`pass userAnswer data to the callback`, () => {
   it(`passes a data object from the answer that was clicked`, () => {
     const handleAnswer = jest.fn();
@@ -26,7 +22,7 @@ describe(`pass userAnswer data to the callback`, () => {
     const answerInputs = questionScreen.find(`input`);
     const firstAnswer = answerInputs.at(0);
 
-    firstAnswer.simulate(`change`, mockEvent);
+    firstAnswer.simulate(`change`);
 
     expect(handleAnswer).toHaveBeenCalledTimes(1);
     expect(handleAnswer).toHaveBeenCalledWith(questions[1], userAnswer);

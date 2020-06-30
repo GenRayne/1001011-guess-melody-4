@@ -15,7 +15,7 @@ const App = ({errorsCount, questions}) => {
   const handleAnswer = useCallback(() => setStep((prevStep) => prevStep + 1), []);
 
   const renderGameScreen = () => {
-    const question = questions[step];
+    const currentQuestion = questions[step];
 
     if (step === START_STEP || step >= questions.length) {
       return (
@@ -26,19 +26,19 @@ const App = ({errorsCount, questions}) => {
       );
     }
 
-    if (question) {
-      switch (question.type) {
+    if (currentQuestion) {
+      switch (currentQuestion.type) {
         case QuestionType.ARTIST:
           return (
             <QuestionArtistScreen
-              question={questions[1]}
+              question={currentQuestion}
               onAnswer={handleAnswer}
             />
           );
         case QuestionType.GENRE:
           return (
             <QuestionGenreScreen
-              question={questions[0]}
+              question={currentQuestion}
               onAnswer={handleAnswer}
             />
           );
@@ -55,10 +55,10 @@ const App = ({errorsCount, questions}) => {
           {renderGameScreen()}
         </Route>
         <Route exact path="/artist">
-          <QuestionArtistScreen question={questions[1]} onAnswer={() => {}} />
+          <QuestionArtistScreen question={questions[1]} onAnswer={handleAnswer} />
         </Route>
         <Route exact path="/genre">
-          <QuestionGenreScreen question={questions[0]} onAnswer={() => {}} />
+          <QuestionGenreScreen question={questions[0]} onAnswer={handleAnswer} />
         </Route>
       </Switch>
     </BrowserRouter>

@@ -21,16 +21,12 @@ describe(`check user answer`, () => {
     });
 
     expect(handleAnswer).toHaveBeenCalledTimes(1);
-    expect(formSendPrevention).toHaveBeenCalledTimes(1);
   });
 
   it(`checks if user answers are consistent with userAnswers prop`, () => {
     const handleAnswer = jest.fn();
     const userAnswers = {
-      1: false,
       2: true,
-      3: false,
-      4: false,
     };
 
     const questionScreen = mount(
@@ -50,10 +46,13 @@ describe(`check user answer`, () => {
     expect(handleAnswer).toHaveBeenCalledWith(questions[0], userAnswers);
 
     expect(questionScreen.find(`input`)
-      .reduce((acc, it, i) => ({
-        ...acc,
-        [i + 1]: it.prop(`checked`)
-      }), {}))
+      .reduce((acc, it, i) => {
+        const isChecked = Boolean(it.prop(`checked`));
+        return isChecked ? {
+          ...acc,
+          [i + 1]: Boolean(isChecked)
+        } : acc;
+      }, {}))
       .toEqual(userAnswers);
   });
 });

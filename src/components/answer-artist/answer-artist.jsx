@@ -4,8 +4,7 @@ import {string, func, shape, arrayOf} from 'prop-types';
 const AnswerArtist = ({answer, question, onAnswer}) => {
   const {id, artist, picture} = answer;
 
-  const handleInputChange = (evt) => {
-    evt.preventDefault();
+  const handleInputChange = () => {
     onAnswer(question, answer);
   };
 

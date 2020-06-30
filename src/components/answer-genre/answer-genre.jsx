@@ -21,7 +21,7 @@ const AnswerGenre = ({answer, userAnswer, onAnswerChange}) => {
           name="answer"
           value={`answer-${id}`}
           id={`answer-${id}`}
-          checked={userAnswer}
+          checked={Boolean(userAnswer)}
           onChange={handleAnswerChange}
         />
         <label className="game__check" htmlFor={`answer-${id}`}>Отметить</label>
