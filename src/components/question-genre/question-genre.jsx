@@ -8,7 +8,7 @@ const QuestionGenreScreen = ({question, onAnswer}) => {
   const [userAnswers, setUserAnswers] = useState({});
 
   const handleGenreAnswer = (id) => {
-    setUserAnswers(() => ({...userAnswers, [id]: !userAnswers[id]}));
+    setUserAnswers((prevAnswers) => ({...prevAnswers, [id]: !prevAnswers[id]}));
   };
 
   const handleSubmit = (evt) => {

@@ -4,7 +4,7 @@ import QuestionGenre from './question-genre.jsx';
 import questions from '../../mocks/test-questions.js';
 
 describe(`check user answer`, () => {
-  it(`doesn't sumbit the form`, () => {
+  it(`calls the handler on submit event`, () => {
     const handleAnswer = jest.fn();
     const genreQuestion = mount(
         <QuestionGenre
@@ -14,11 +14,8 @@ describe(`check user answer`, () => {
     );
 
     const form = genreQuestion.find(`form`);
-    const formSendPrevention = jest.fn();
 
-    form.simulate(`submit`, {
-      preventDefault: formSendPrevention
-    });
+    form.simulate(`submit`);
 
     expect(handleAnswer).toHaveBeenCalledTimes(1);
   });
@@ -39,20 +36,10 @@ describe(`check user answer`, () => {
     const form = questionScreen.find(`form`);
     const secondInput = questionScreen.find(`input`).at(1);
 
-    secondInput.simulate(`change`, {target: {checked: true}});
-    form.simulate(`submit`, {preventDefault() {}});
+    secondInput.simulate(`change`);
+    form.simulate(`submit`);
 
     expect(handleAnswer).toHaveBeenCalledTimes(1);
     expect(handleAnswer).toHaveBeenCalledWith(questions[0], userAnswers);
-
-    expect(questionScreen.find(`input`)
-      .reduce((acc, it, i) => {
-        const isChecked = Boolean(it.prop(`checked`));
-        return isChecked ? {
-          ...acc,
-          [i + 1]: Boolean(isChecked)
-        } : acc;
-      }, {}))
-      .toEqual(userAnswers);
   });
 });
