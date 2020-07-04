@@ -1,6 +1,7 @@
 import React from 'react';
 import renderer from 'react-test-renderer';
 import App from './app.jsx';
+import questions from '../../mocks/test-questions.js';
 
 describe(`Render App`, () => {
   it(`renders App`, () => {
@@ -8,7 +9,7 @@ describe(`Render App`, () => {
       .create(
           <App
             errorsCount={3}
-            onPlayButtonClick={() => {}}
+            questions={questions}
           />
       )
       .toJSON();
