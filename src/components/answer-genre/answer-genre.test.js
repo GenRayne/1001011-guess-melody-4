@@ -12,12 +12,16 @@ const userAnswer = true;
 
 describe(`render AnswerGenre`, () => {
   it(`renders AnswerGenre`, () => {
+    const activePlayer = `1`;
+
     const tree = renderer
       .create(
           <AnswerGenre
             answer={answer}
             userAnswer={userAnswer}
             onAnswerChange={() => {}}
+            activePlayer={activePlayer}
+            onPlayButtonClick={() => {}}
           />
       )
       .toJSON();

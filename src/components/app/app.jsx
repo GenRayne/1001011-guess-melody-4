@@ -72,7 +72,7 @@ const App = ({errorsCount, questions}) => {
 
 App.propTypes = {
   errorsCount: number.isRequired,
-  questions: array.isRequired
+  questions: array.isRequired,
 };
 
 export default App;

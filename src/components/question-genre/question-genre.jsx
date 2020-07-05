@@ -6,6 +6,8 @@ const QuestionGenreScreen = ({question, onAnswer}) => {
   const {answers} = question;
 
   const [userAnswers, setUserAnswers] = useState({});
+  const [activePlayer, setActivePlayer] = useState(``);
+  const handlePlayButtonClick = (id) => setActivePlayer(id);
 
   const handleGenreAnswer = (id) => {
     setUserAnswers((prevAnswers) => ({...prevAnswers, [id]: !prevAnswers[id]}));
@@ -29,6 +31,8 @@ const QuestionGenreScreen = ({question, onAnswer}) => {
             answer={answer}
             userAnswer={userAnswers[i + 1]}
             onAnswerChange={handleGenreAnswer}
+            activePlayer={activePlayer}
+            onPlayButtonClick={handlePlayButtonClick}
           />
         ))}
         <button className="game__submit button" type="submit">Ответить</button>
@@ -44,9 +48,9 @@ QuestionGenreScreen.propTypes = {
     answers: arrayOf(shape({
       src: string.isRequired,
       genre: string.isRequired,
-    }))
-  }),
-  onAnswer: func.isRequired
+    })).isRequired,
+  }).isRequired,
+  onAnswer: func.isRequired,
 };
 
 export default QuestionGenreScreen;

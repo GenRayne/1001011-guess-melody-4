@@ -1,6 +1,7 @@
 import React from 'react';
 import renderer from 'react-test-renderer';
 import AnswerArtist from './answer-artist.jsx';
+import questions from '../../mocks/test-questions.js';
 
 const answer = {
   id: `1`,
@@ -14,6 +15,7 @@ describe(`render AnswerArtist`, () => {
       .create(
           <AnswerArtist
             answer={answer}
+            question={questions[1]}
             onAnswer={() => {}}
           />
       )

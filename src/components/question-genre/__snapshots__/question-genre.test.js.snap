@@ -15,7 +15,7 @@ Array [
       className="track"
     >
       <button
-        className="track__button track__button--pause"
+        className="track__button track__button--play"
         disabled={true}
         onClick={[Function]}
         type="button"

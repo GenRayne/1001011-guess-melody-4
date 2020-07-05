@@ -1,18 +1,17 @@
 import React, {createRef, useState, useEffect} from 'react';
-import {string, bool} from 'prop-types';
+import {string, bool, func} from 'prop-types';
 
 const PlayerAction = {
   PLAY: `play`,
   PAUSE: `pause`,
 };
 
-const AudioPlayer = ({src, isNowPlaying}) => {
+const AudioPlayer = ({src, isNowPlaying, onPlayButtonClick}) => {
   const audioRef = createRef();
   let audio = null;
 
   const [, setProgress] = useState(0);
   const [isLoading, setIsLoading] = useState(true);
-  const [isPlaying, setIsPlaying] = useState(isNowPlaying);
 
   // componentDidMount
   useEffect(() => {
@@ -20,16 +19,12 @@ const AudioPlayer = ({src, isNowPlaying}) => {
     audio.src = src;
 
     audio.oncanplaythrough = () => setIsLoading(false);
-    audio.onplay = () => setIsPlaying(true);
-    audio.onpause = () => setIsPlaying(false);
     audio.ontimeupdate = () => setProgress(audio.currentTime);
 
     // componentWillUnmount
     return () => {
       audio.src = ``;
       audio.oncanplaythrough = null;
-      audio.onplay = null;
-      audio.onpause = null;
       audio.ontimeupdate = null;
     };
   }, []);
@@ -38,22 +33,20 @@ const AudioPlayer = ({src, isNowPlaying}) => {
   useEffect(() => {
     audio = audioRef.current;
 
-    if (isPlaying) {
+    if (isNowPlaying) {
       audio.play();
     } else {
       audio.pause();
     }
-  }, [isPlaying]);
-
-  const handleOnButtonClick = () => setIsPlaying((prevState) => !prevState);
+  }, [isNowPlaying]);
 
   return (
     <>
       <button
         type="button"
-        className={`track__button track__button--${isPlaying ? PlayerAction.PAUSE : PlayerAction.PLAY}`}
+        className={`track__button track__button--${isNowPlaying ? PlayerAction.PAUSE : PlayerAction.PLAY}`}
         disabled={isLoading}
-        onClick={handleOnButtonClick}
+        onClick={onPlayButtonClick}
       />
       <div className="track__status">
         <audio ref={audioRef} />
@@ -65,6 +58,7 @@ const AudioPlayer = ({src, isNowPlaying}) => {
 AudioPlayer.propTypes = {
   src: string.isRequired,
   isNowPlaying: bool.isRequired,
+  onPlayButtonClick: func.isRequired,
 };
 
 export default AudioPlayer;

@@ -7,9 +7,15 @@ const isPlaying = false;
 
 describe(`render AudioPlayer`, () => {
   it(`renders AudioPlayer`, () => {
+    const handlePlayButtonClick = () => {};
+
     const tree = renderer
       .create(
-          <AudioPlayer src={src} isNowPlaying={isPlaying} />
+          <AudioPlayer
+            src={src}
+            isNowPlaying={isPlaying}
+            onPlayButtonClick={handlePlayButtonClick}
+          />
       )
       .toJSON();
 
