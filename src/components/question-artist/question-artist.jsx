@@ -1,6 +1,7 @@
 import React from 'react';
 import {shape, string, arrayOf, func} from 'prop-types';
 import AnswerArtist from '../answer-artist/answer-artist.jsx';
+import AudioPlayer from '../audio-player/audio-player.jsx';
 
 const QuestionArtistScreen = ({question, onAnswer}) => {
   const {song, answers} = question;
@@ -10,10 +11,7 @@ const QuestionArtistScreen = ({question, onAnswer}) => {
       <h2 className="game__title">Кто исполняет эту песню?</h2>
       <div className="game__track">
         <div className="track">
-          <button className="track__button track__button--play" type="button" />
-          <div className="track__status">
-            <audio src={song.src} />
-          </div>
+          <AudioPlayer src={song.src} isNowPlaying={true} />
         </div>
       </div>
 

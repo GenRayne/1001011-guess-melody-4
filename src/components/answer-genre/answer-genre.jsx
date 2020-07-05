@@ -1,5 +1,6 @@
 import React from 'react';
 import {shape, string, bool, func} from 'prop-types';
+import AudioPlayer from '../audio-player/audio-player.jsx';
 
 const AnswerGenre = ({answer, userAnswer, onAnswerChange}) => {
   const {id, src: audioSrc} = answer;
@@ -10,10 +11,7 @@ const AnswerGenre = ({answer, userAnswer, onAnswerChange}) => {
 
   return (
     <div className="track">
-      <button className="track__button track__button--play" type="button" />
-      <div className="track__status">
-        <audio src={audioSrc} />
-      </div>
+      <AudioPlayer src={audioSrc} isNowPlaying={id === `1`} />
       <div className="game__answer">
         <input
           className="game__input visually-hidden"
