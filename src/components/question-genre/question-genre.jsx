@@ -2,12 +2,10 @@ import React, {useState} from 'react';
 import {shape, string, arrayOf, func} from 'prop-types';
 import AnswerGenre from '../answer-genre/answer-genre.jsx';
 
-const QuestionGenreScreen = ({question, onAnswer}) => {
+const QuestionGenre = ({question, onAnswer, renderPlayer}) => {
   const {answers} = question;
 
   const [userAnswers, setUserAnswers] = useState({});
-  const [activePlayer, setActivePlayer] = useState(``);
-  const handlePlayButtonClick = (id) => setActivePlayer(id);
 
   const handleGenreAnswer = (id) => {
     setUserAnswers((prevAnswers) => ({...prevAnswers, [id]: !prevAnswers[id]}));
@@ -31,8 +29,7 @@ const QuestionGenreScreen = ({question, onAnswer}) => {
             answer={answer}
             userAnswer={userAnswers[i + 1]}
             onAnswerChange={handleGenreAnswer}
-            activePlayer={activePlayer}
-            onPlayButtonClick={handlePlayButtonClick}
+            renderPlayer={renderPlayer}
           />
         ))}
         <button className="game__submit button" type="submit">Ответить</button>
@@ -41,7 +38,7 @@ const QuestionGenreScreen = ({question, onAnswer}) => {
   );
 };
 
-QuestionGenreScreen.propTypes = {
+QuestionGenre.propTypes = {
   question: shape({
     type: string.isRequired,
     genre: string.isRequired,
@@ -51,6 +48,7 @@ QuestionGenreScreen.propTypes = {
     })).isRequired,
   }).isRequired,
   onAnswer: func.isRequired,
+  renderPlayer: func.isRequired,
 };
 
-export default QuestionGenreScreen;
+export default QuestionGenre;

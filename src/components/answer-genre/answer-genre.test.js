@@ -9,19 +9,17 @@ const answer = {
 };
 
 const userAnswer = true;
+const randomHandler = () => {};
 
 describe(`render AnswerGenre`, () => {
   it(`renders AnswerGenre`, () => {
-    const activePlayer = `1`;
-
     const tree = renderer
       .create(
           <AnswerGenre
             answer={answer}
             userAnswer={userAnswer}
-            onAnswerChange={() => {}}
-            activePlayer={activePlayer}
-            onPlayButtonClick={() => {}}
+            onAnswerChange={randomHandler}
+            renderPlayer={randomHandler}
           />
       )
       .toJSON();

@@ -1,24 +1,17 @@
-import React, {useState} from 'react';
+import React from 'react';
 import {shape, string, arrayOf, func} from 'prop-types';
 import AnswerArtist from '../answer-artist/answer-artist.jsx';
-import AudioPlayer from '../audio-player/audio-player.jsx';
 
-const QuestionArtistScreen = ({question, onAnswer}) => {
+const QuestionArtist = ({question, onAnswer, renderPlayer}) => {
   const {song, answers} = question;
-
-  const [isPlaying, setIsPlaying] = useState(true);
-  const handlePlayButtonClick = () => setIsPlaying((prevState) => !prevState);
+  const AUDIO_ID = `1`;
 
   return (
     <>
       <h2 className="game__title">Кто исполняет эту песню?</h2>
       <div className="game__track">
         <div className="track">
-          <AudioPlayer
-            src={song.src}
-            isNowPlaying={isPlaying}
-            onPlayButtonClick={handlePlayButtonClick}
-          />
+          {renderPlayer(song.src, AUDIO_ID)}
         </div>
       </div>
 
@@ -29,7 +22,7 @@ const QuestionArtistScreen = ({question, onAnswer}) => {
   );
 };
 
-QuestionArtistScreen.propTypes = {
+QuestionArtist.propTypes = {
   question: shape({
     type: string.isRequired,
     song: shape({
@@ -42,6 +35,7 @@ QuestionArtistScreen.propTypes = {
     })).isRequired,
   }).isRequired,
   onAnswer: func.isRequired,
+  renderPlayer: func.isRequired,
 };
 
-export default QuestionArtistScreen;
+export default QuestionArtist;

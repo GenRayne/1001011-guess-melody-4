@@ -12,7 +12,11 @@ describe(`render GameScreen`, () => {
     const tree = renderer
       .create(
           <GameScreen type={QuestionType.ARTIST}>
-            <QuestionArtist question={questions[1]} onAnswer={handler} />
+            <QuestionArtist
+              question={questions[1]}
+              onAnswer={handler}
+              renderPlayer={handler}
+            />
           </GameScreen>
       )
       .toJSON();
