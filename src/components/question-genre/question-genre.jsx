@@ -23,11 +23,11 @@ const QuestionGenre = ({question, onAnswer, renderPlayer}) => {
         className="game__tracks"
         onSubmit={handleSubmit}
       >
-        {answers.map((answer, i) => (
+        {answers.map((answer) => (
           <AnswerGenre
             key={answer.id}
             answer={answer}
-            userAnswer={userAnswers[i + 1]}
+            userAnswer={userAnswers[answer.id]}
             onAnswerChange={handleGenreAnswer}
             renderPlayer={renderPlayer}
           />

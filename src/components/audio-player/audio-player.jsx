@@ -1,5 +1,6 @@
 import React, {createRef, useState, useEffect} from 'react';
 import {string, bool, func} from 'prop-types';
+import {capitalizeFirstLetter} from '../../utils.js';
 
 const PlayerAction = {
   PLAY: `play`,
@@ -45,6 +46,7 @@ const AudioPlayer = ({src, isNowPlaying, onPlayButtonClick}) => {
       <button
         type="button"
         className={`track__button track__button--${isNowPlaying ? PlayerAction.PAUSE : PlayerAction.PLAY}`}
+        title={`${isNowPlaying ? capitalizeFirstLetter(PlayerAction.PAUSE) : capitalizeFirstLetter(PlayerAction.PLAY)}`}
         disabled={isLoading}
         onClick={onPlayButtonClick}
       />
