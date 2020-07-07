@@ -9,7 +9,7 @@ const answer = {
 };
 
 const userAnswer = true;
-const randomHandler = () => {};
+const noopHandler = () => {};
 
 describe(`render AnswerGenre`, () => {
   it(`renders AnswerGenre`, () => {
@@ -18,8 +18,8 @@ describe(`render AnswerGenre`, () => {
           <AnswerGenre
             answer={answer}
             userAnswer={userAnswer}
-            onAnswerChange={randomHandler}
-            renderPlayer={randomHandler}
+            onAnswerChange={noopHandler}
+            renderPlayer={noopHandler}
           />
       )
       .toJSON();

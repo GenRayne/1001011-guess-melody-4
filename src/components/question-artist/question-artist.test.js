@@ -3,7 +3,7 @@ import renderer from 'react-test-renderer';
 import QuestionArtist from './question-artist.jsx';
 import questions from '../../mocks/test-questions.js';
 
-const randomHandler = () => {};
+const noopHandler = () => {};
 
 describe(`render QuestionArtist`, () => {
   it(`renders QuestionArtist`, () => {
@@ -11,8 +11,8 @@ describe(`render QuestionArtist`, () => {
       .create(
           <QuestionArtist
             question={questions[1]}
-            onAnswer={randomHandler}
-            renderPlayer={randomHandler}
+            onAnswer={noopHandler}
+            renderPlayer={noopHandler}
           />
       )
       .toJSON();
