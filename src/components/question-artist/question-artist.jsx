@@ -1,17 +1,29 @@
 import React from 'react';
 import {shape, string, arrayOf, func} from 'prop-types';
 import AnswerArtist from '../answer-artist/answer-artist.jsx';
+import AudioPlayer from '../audio-player/audio-player.jsx';
+import {useAudioPlayer} from '../../hocs/with-audio-player/with-audio-player.jsx';
 
-const QuestionArtist = ({question, onAnswer, renderPlayer}) => {
+const QuestionArtist = ({question, onAnswer}) => {
   const {song, answers} = question;
   const AUDIO_ID = `1`;
+
+  const {activePlayerId, handlePlayButtonClick} = useAudioPlayer();
+
+  const handleButtonClick = () => {
+    handlePlayButtonClick(AUDIO_ID);
+  };
 
   return (
     <>
       <h2 className="game__title">Кто исполняет эту песню?</h2>
       <div className="game__track">
         <div className="track">
-          {renderPlayer(song.src, AUDIO_ID)}
+          <AudioPlayer
+            src={song.src}
+            isNowPlaying={AUDIO_ID === activePlayerId}
+            onPlayButtonClick={handleButtonClick}
+          />
         </div>
       </div>
 
@@ -35,7 +47,6 @@ QuestionArtist.propTypes = {
     })).isRequired,
   }).isRequired,
   onAnswer: func.isRequired,
-  renderPlayer: func.isRequired,
 };
 
 export default QuestionArtist;

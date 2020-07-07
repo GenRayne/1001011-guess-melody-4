@@ -1,13 +1,19 @@
 import React from 'react';
 import {shape, string, bool, func} from 'prop-types';
+import AudioPlayer from '../audio-player/audio-player.jsx';
 
 const AnswerGenre = ({
   answer,
   userAnswer = false,
   onAnswerChange,
-  renderPlayer,
+  activePlayerId,
+  onPlayButtonClick,
 }) => {
   const {id, src: audioSrc} = answer;
+
+  const handlePlayButtonClick = () => {
+    onPlayButtonClick(id);
+  };
 
   const handleAnswerChange = () => {
     onAnswerChange(id);
@@ -15,7 +21,11 @@ const AnswerGenre = ({
 
   return (
     <div className="track">
-      {renderPlayer(audioSrc, id)}
+      <AudioPlayer
+        src={audioSrc}
+        isNowPlaying={id === activePlayerId}
+        onPlayButtonClick={handlePlayButtonClick}
+      />
       <div className="game__answer">
         <input
           className="game__input visually-hidden"
@@ -38,7 +48,8 @@ AnswerGenre.propTypes = {
   }).isRequired,
   userAnswer: bool,
   onAnswerChange: func.isRequired,
-  renderPlayer: func.isRequired,
+  activePlayerId: string.isRequired,
+  onPlayButtonClick: func.isRequired,
 };
 
 export default AnswerGenre;

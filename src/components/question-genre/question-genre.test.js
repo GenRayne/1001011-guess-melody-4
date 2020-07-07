@@ -12,7 +12,6 @@ describe(`render QuestionGenre`, () => {
           <QuestionGenre
             question={questions[0]}
             onAnswer={noopHandler}
-            renderPlayer={noopHandler}
           />
       )
       .toJSON();

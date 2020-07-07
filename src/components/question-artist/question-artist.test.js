@@ -12,7 +12,6 @@ describe(`render QuestionArtist`, () => {
           <QuestionArtist
             question={questions[1]}
             onAnswer={noopHandler}
-            renderPlayer={noopHandler}
           />
       )
       .toJSON();

@@ -12,7 +12,20 @@ Array [
   >
     <div
       className="track"
-    />
+    >
+      <button
+        className="track__button track__button--pause"
+        disabled={true}
+        onClick={[Function]}
+        title="Pause"
+        type="button"
+      />
+      <div
+        className="track__status"
+      >
+        <audio />
+      </div>
+    </div>
   </div>,
   <form
     className="game__artist"

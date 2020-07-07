@@ -12,7 +12,6 @@ describe(`check user answer`, () => {
         <QuestionGenre
           onAnswer={handleAnswer}
           question={questions[0]}
-          renderPlayer={noopHandler}
         />
     );
 

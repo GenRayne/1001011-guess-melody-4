@@ -1,11 +1,13 @@
 import React, {useState} from 'react';
 import {shape, string, arrayOf, func} from 'prop-types';
 import AnswerGenre from '../answer-genre/answer-genre.jsx';
+import {useAudioPlayer} from '../../hocs/with-audio-player/with-audio-player.jsx';
 
-const QuestionGenre = ({question, onAnswer, renderPlayer}) => {
+const QuestionGenre = ({question, onAnswer}) => {
   const {answers} = question;
 
   const [userAnswers, setUserAnswers] = useState({});
+  const {activePlayerId, handlePlayButtonClick} = useAudioPlayer();
 
   const handleGenreAnswer = (id) => {
     setUserAnswers((prevAnswers) => ({...prevAnswers, [id]: !prevAnswers[id]}));
@@ -29,7 +31,8 @@ const QuestionGenre = ({question, onAnswer, renderPlayer}) => {
             answer={answer}
             userAnswer={userAnswers[answer.id]}
             onAnswerChange={handleGenreAnswer}
-            renderPlayer={renderPlayer}
+            activePlayerId={activePlayerId}
+            onPlayButtonClick={handlePlayButtonClick}
           />
         ))}
         <button className="game__submit button" type="submit">Ответить</button>
@@ -48,7 +51,6 @@ QuestionGenre.propTypes = {
     })).isRequired,
   }).isRequired,
   onAnswer: func.isRequired,
-  renderPlayer: func.isRequired,
 };
 
 export default QuestionGenre;

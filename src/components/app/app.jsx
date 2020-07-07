@@ -5,12 +5,9 @@ import WelcomeScreen from '../welcome-screen/welcome-screen.jsx';
 import QuestionArtistScreen from '../question-artist/question-artist.jsx';
 import QuestionGenreScreen from '../question-genre/question-genre.jsx';
 import GameScreen from '../game-screen/game-screen.jsx';
-import withAudioPlayer from '../../hocs/with-audio-player/with-audio-player.jsx';
 import {QuestionType} from '../../const.js';
 
 const START_STEP = -1;
-const QuestionArtistScreenWrapped = withAudioPlayer(QuestionArtistScreen);
-const QuestionGenreScreenWrapped = withAudioPlayer(QuestionGenreScreen);
 
 const App = ({errorsCount, questions}) => {
   const [step, setStep] = useState(START_STEP);
@@ -35,7 +32,7 @@ const App = ({errorsCount, questions}) => {
         case QuestionType.ARTIST:
           return (
             <GameScreen type={QuestionType.ARTIST}>
-              <QuestionArtistScreenWrapped
+              <QuestionArtistScreen
                 question={currentQuestion}
                 onAnswer={handleAnswer}
               />
@@ -44,7 +41,7 @@ const App = ({errorsCount, questions}) => {
         case QuestionType.GENRE:
           return (
             <GameScreen type={QuestionType.GENRE}>
-              <QuestionGenreScreenWrapped
+              <QuestionGenreScreen
                 question={currentQuestion}
                 onAnswer={handleAnswer}
               />
@@ -63,10 +60,10 @@ const App = ({errorsCount, questions}) => {
           {renderGameScreen()}
         </Route>
         <Route exact path="/artist">
-          <QuestionArtistScreenWrapped question={questions[1]} onAnswer={handleAnswer} />
+          <QuestionArtistScreen question={questions[1]} onAnswer={handleAnswer} />
         </Route>
         <Route exact path="/genre">
-          <QuestionGenreScreenWrapped question={questions[0]} onAnswer={handleAnswer} />
+          <QuestionGenreScreen question={questions[0]} onAnswer={handleAnswer} />
         </Route>
       </Switch>
     </BrowserRouter>

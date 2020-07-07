@@ -3,8 +3,6 @@ import {mount} from 'enzyme';
 import QuestionArtist from './question-artist.jsx';
 import questions from '../../mocks/test-questions.js';
 
-const noopHandler = () => {};
-
 describe(`pass userAnswer data to the callback`, () => {
   it(`passes a data object from the answer that was clicked`, () => {
     const handleAnswer = jest.fn();
@@ -18,7 +16,6 @@ describe(`pass userAnswer data to the callback`, () => {
         <QuestionArtist
           onAnswer={handleAnswer}
           question={questions[1]}
-          renderPlayer={noopHandler}
         />
     );
 
