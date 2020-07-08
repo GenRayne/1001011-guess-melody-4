@@ -30,7 +30,7 @@ const AudioPlayer = ({src, isNowPlaying, onPlayButtonClick}) => {
     };
   }, []);
 
-  // componentDidUpdate (?)
+  // componentDidUpdate
   useEffect(() => {
     audio = audioRef.current;
 
@@ -41,12 +41,15 @@ const AudioPlayer = ({src, isNowPlaying, onPlayButtonClick}) => {
     }
   }, [isNowPlaying]);
 
+  const buttonName = isNowPlaying ? capitalizeFirstLetter(PlayerAction.PAUSE) : capitalizeFirstLetter(PlayerAction.PLAY);
+
   return (
     <>
       <button
         type="button"
         className={`track__button track__button--${isNowPlaying ? PlayerAction.PAUSE : PlayerAction.PLAY}`}
-        title={`${isNowPlaying ? capitalizeFirstLetter(PlayerAction.PAUSE) : capitalizeFirstLetter(PlayerAction.PLAY)}`}
+        title={buttonName}
+        aria-label={buttonName}
         disabled={isLoading}
         onClick={onPlayButtonClick}
       />

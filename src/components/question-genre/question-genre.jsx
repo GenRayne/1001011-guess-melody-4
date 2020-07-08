@@ -1,13 +1,15 @@
 import React, {useState} from 'react';
 import {shape, string, arrayOf, func} from 'prop-types';
 import AnswerGenre from '../answer-genre/answer-genre.jsx';
-import {useAudioPlayer} from '../../hocs/with-audio-player/with-audio-player.jsx';
+import {useAudioPlayer} from '../../hooks/use-audio-player/use-audio-player.jsx';
+
+const DEFAULT_ID = `1`;
 
 const QuestionGenre = ({question, onAnswer}) => {
   const {answers} = question;
 
   const [userAnswers, setUserAnswers] = useState({});
-  const {activePlayerId, handlePlayButtonClick} = useAudioPlayer();
+  const {activePlayerId, handlePlayButtonClick} = useAudioPlayer(DEFAULT_ID);
 
   const handleGenreAnswer = (id) => {
     setUserAnswers((prevAnswers) => ({...prevAnswers, [id]: !prevAnswers[id]}));

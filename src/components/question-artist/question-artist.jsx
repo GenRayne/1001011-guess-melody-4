@@ -2,13 +2,14 @@ import React from 'react';
 import {shape, string, arrayOf, func} from 'prop-types';
 import AnswerArtist from '../answer-artist/answer-artist.jsx';
 import AudioPlayer from '../audio-player/audio-player.jsx';
-import {useAudioPlayer} from '../../hocs/with-audio-player/with-audio-player.jsx';
+import {useAudioPlayer} from '../../hooks/use-audio-player/use-audio-player.jsx';
+
+const AUDIO_ID = `1`;
 
 const QuestionArtist = ({question, onAnswer}) => {
   const {song, answers} = question;
-  const AUDIO_ID = `1`;
 
-  const {activePlayerId, handlePlayButtonClick} = useAudioPlayer();
+  const {activePlayerId, handlePlayButtonClick} = useAudioPlayer(AUDIO_ID);
 
   const handleButtonClick = () => {
     handlePlayButtonClick(AUDIO_ID);
