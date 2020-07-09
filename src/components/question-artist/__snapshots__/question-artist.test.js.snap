@@ -18,7 +18,6 @@ Array [
         className="track__button track__button--pause"
         disabled={true}
         onClick={[Function]}
-        title="Pause"
         type="button"
       />
       <div

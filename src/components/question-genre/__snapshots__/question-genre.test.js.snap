@@ -19,7 +19,6 @@ Array [
         className="track__button track__button--pause"
         disabled={true}
         onClick={[Function]}
-        title="Pause"
         type="button"
       />
       <div
@@ -55,7 +54,6 @@ Array [
         className="track__button track__button--play"
         disabled={true}
         onClick={[Function]}
-        title="Play"
         type="button"
       />
       <div
@@ -91,7 +89,6 @@ Array [
         className="track__button track__button--play"
         disabled={true}
         onClick={[Function]}
-        title="Play"
         type="button"
       />
       <div
@@ -127,7 +124,6 @@ Array [
         className="track__button track__button--play"
         disabled={true}
         onClick={[Function]}
-        title="Play"
         type="button"
       />
       <div

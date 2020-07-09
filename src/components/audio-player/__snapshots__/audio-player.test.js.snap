@@ -7,7 +7,6 @@ Array [
     className="track__button track__button--play"
     disabled={true}
     onClick={[Function]}
-    title="Play"
     type="button"
   />,
   <div

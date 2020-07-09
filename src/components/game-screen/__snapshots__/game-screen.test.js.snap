@@ -74,7 +74,6 @@ exports[`render GameScreen renders GameScreen 1`] = `
           className="track__button track__button--pause"
           disabled={true}
           onClick={[Function]}
-          title="Pause"
           type="button"
         />
         <div
