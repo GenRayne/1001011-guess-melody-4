@@ -9,14 +9,13 @@ const PlayerAction = {
 
 const AudioPlayer = ({src, isNowPlaying, onPlayButtonClick}) => {
   const audioRef = createRef();
-  let audio = null;
 
   const [, setProgress] = useState(0);
   const [isLoading, setIsLoading] = useState(true);
 
   // componentDidMount
   useEffect(() => {
-    audio = audioRef.current;
+    const audio = audioRef.current;
     audio.src = src;
 
     audio.oncanplaythrough = () => setIsLoading(false);
@@ -32,7 +31,7 @@ const AudioPlayer = ({src, isNowPlaying, onPlayButtonClick}) => {
 
   // componentDidUpdate
   useEffect(() => {
-    audio = audioRef.current;
+    const audio = audioRef.current;
 
     if (isNowPlaying) {
       audio.play();
@@ -48,7 +47,6 @@ const AudioPlayer = ({src, isNowPlaying, onPlayButtonClick}) => {
       <button
         type="button"
         className={`track__button track__button--${isNowPlaying ? PlayerAction.PAUSE : PlayerAction.PLAY}`}
-        title={buttonName}
         aria-label={buttonName}
         disabled={isLoading}
         onClick={onPlayButtonClick}
