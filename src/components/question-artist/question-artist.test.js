@@ -3,7 +3,7 @@ import renderer from 'react-test-renderer';
 import QuestionArtist from './question-artist.jsx';
 import questions from '../../mocks/test-questions.js';
 
-const handleAnswer = () => {};
+const noopHandler = () => {};
 
 describe(`render QuestionArtist`, () => {
   it(`renders QuestionArtist`, () => {
@@ -11,7 +11,7 @@ describe(`render QuestionArtist`, () => {
       .create(
           <QuestionArtist
             question={questions[1]}
-            onAnswer={handleAnswer}
+            onAnswer={noopHandler}
           />
       )
       .toJSON();

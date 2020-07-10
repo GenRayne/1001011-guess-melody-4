@@ -8,7 +8,9 @@ const answer = {
   genre: `rock`,
 };
 
+const activePlayerId = `1`;
 const userAnswer = true;
+const noopHandler = () => {};
 
 describe(`render AnswerGenre`, () => {
   it(`renders AnswerGenre`, () => {
@@ -17,7 +19,9 @@ describe(`render AnswerGenre`, () => {
           <AnswerGenre
             answer={answer}
             userAnswer={userAnswer}
-            onAnswerChange={() => {}}
+            onAnswerChange={noopHandler}
+            activePlayerId={activePlayerId}
+            onPlayButtonClick={noopHandler}
           />
       )
       .toJSON();

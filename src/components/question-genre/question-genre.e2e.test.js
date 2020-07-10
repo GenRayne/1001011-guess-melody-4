@@ -3,6 +3,8 @@ import {mount} from 'enzyme';
 import QuestionGenre from './question-genre.jsx';
 import questions from '../../mocks/test-questions.js';
 
+const noopHandler = () => {};
+
 describe(`check user answer`, () => {
   it(`calls the handler on submit event`, () => {
     const handleAnswer = jest.fn();
@@ -30,6 +32,7 @@ describe(`check user answer`, () => {
         <QuestionGenre
           onAnswer={handleAnswer}
           question={questions[0]}
+          renderPlayer={noopHandler}
         />
     );
 

@@ -4,6 +4,7 @@ import {array, number} from 'prop-types';
 import WelcomeScreen from '../welcome-screen/welcome-screen.jsx';
 import QuestionArtistScreen from '../question-artist/question-artist.jsx';
 import QuestionGenreScreen from '../question-genre/question-genre.jsx';
+import GameScreen from '../game-screen/game-screen.jsx';
 import {QuestionType} from '../../const.js';
 
 const START_STEP = -1;
@@ -30,17 +31,21 @@ const App = ({errorsCount, questions}) => {
       switch (currentQuestion.type) {
         case QuestionType.ARTIST:
           return (
-            <QuestionArtistScreen
-              question={currentQuestion}
-              onAnswer={handleAnswer}
-            />
+            <GameScreen type={QuestionType.ARTIST}>
+              <QuestionArtistScreen
+                question={currentQuestion}
+                onAnswer={handleAnswer}
+              />
+            </GameScreen>
           );
         case QuestionType.GENRE:
           return (
-            <QuestionGenreScreen
-              question={currentQuestion}
-              onAnswer={handleAnswer}
-            />
+            <GameScreen type={QuestionType.GENRE}>
+              <QuestionGenreScreen
+                question={currentQuestion}
+                onAnswer={handleAnswer}
+              />
+            </GameScreen>
           );
       }
     }
@@ -67,7 +72,7 @@ const App = ({errorsCount, questions}) => {
 
 App.propTypes = {
   errorsCount: number.isRequired,
-  questions: array.isRequired
+  questions: array.isRequired,
 };
 
 export default App;

@@ -3,7 +3,7 @@ import renderer from 'react-test-renderer';
 import QuestionGenre from './question-genre.jsx';
 import questions from '../../mocks/test-questions.js';
 
-const handleAnswer = () => {};
+const noopHandler = () => {};
 
 describe(`render QuestionGenre`, () => {
   it(`renders QuestionGenre`, () => {
@@ -11,7 +11,7 @@ describe(`render QuestionGenre`, () => {
       .create(
           <QuestionGenre
             question={questions[0]}
-            onAnswer={handleAnswer}
+            onAnswer={noopHandler}
           />
       )
       .toJSON();

@@ -31,18 +31,18 @@ AnswerArtist.propTypes = {
     id: string.isRequired,
     artist: string.isRequired,
     picture: string.isRequired,
-  }),
+  }).isRequired,
   question: shape({
     type: string.isRequired,
     song: shape({
       artist: string.isRequired,
       src: string.isRequired,
-    }),
+    }).isRequired,
     answers: arrayOf(shape({
       picture: string.isRequired,
       artist: string.isRequired,
-    }))
-  }),
+    })).isRequired,
+  }).isRequired,
   onAnswer: func.isRequired,
 };
 
