@@ -18,7 +18,7 @@ const store = createStore(
 ReactDOM.render(
     <Provider store={store}>
       <App
-        errorsCount={GameSettings.ERRORS_COUNT}
+        mistakesCount={GameSettings.ERRORS_COUNT}
         questions={questions}
       />
     </Provider>,
