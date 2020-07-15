@@ -12,7 +12,7 @@ import {QuestionType} from '../../const.js';
 const START_STEP = -1;
 
 const App = ({
-  mistakesCount,
+  maxMistakes,
   questions,
   onPlayButtonClick,
   onUserAnswer,
@@ -24,7 +24,7 @@ const App = ({
     if (step === START_STEP || step >= questions.length) {
       return (
         <WelcomeScreen
-          mistakesCount={mistakesCount}
+          mistakesCount={maxMistakes}
           onPlayButtonClick={onPlayButtonClick}
         />
       );
@@ -74,7 +74,7 @@ const App = ({
 };
 
 App.propTypes = {
-  mistakesCount: number.isRequired,
+  maxMistakes: number.isRequired,
   questions: array.isRequired,
   onPlayButtonClick: func.isRequired,
   onUserAnswer: func.isRequired,
@@ -82,14 +82,17 @@ App.propTypes = {
 };
 
 const mapStateToProps = (state) => ({
-  step: state.step
+  step: state.step,
+  maxMistakes: state.maxMistakes,
+  questions: state.questions,
 });
 
 const mapDispatchToProps = (dispatch) => ({
   onPlayButtonClick() {
     dispatch(ActionCreator.incrementStep());
   },
-  onUserAnswer() {
+  onUserAnswer(question, answer) {
+    dispatch(ActionCreator.incrementMistakes(question, answer));
     dispatch(ActionCreator.incrementStep());
   },
 });

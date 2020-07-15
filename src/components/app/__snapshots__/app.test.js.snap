@@ -43,17 +43,7 @@ exports[`Render App renders QuestionArtist 1`] = `
     </svg>
     <div
       className="game__mistakes"
-    >
-      <div
-        className="wrong"
-      />
-      <div
-        className="wrong"
-      />
-      <div
-        className="wrong"
-      />
-    </div>
+    />
   </header>
   <section
     className="game__screen"
@@ -203,17 +193,7 @@ exports[`Render App renders QuestionGenre 1`] = `
     </svg>
     <div
       className="game__mistakes"
-    >
-      <div
-        className="wrong"
-      />
-      <div
-        className="wrong"
-      />
-      <div
-        className="wrong"
-      />
-    </div>
+    />
   </header>
   <section
     className="game__screen"
