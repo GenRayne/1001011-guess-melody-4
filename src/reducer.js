@@ -11,6 +11,7 @@ const initialState = {
 const ActionType = {
   INCREMENT_STEP: `INCREMENT_STEP`,
   INCREMENT_MISTAKES: `INCREMENT_MISTAKES`,
+  RETURN_TO_START: `RETURN_TO_START`,
 };
 
 const isGenreAnswerCorrect = (question, userAnswer) => {
@@ -26,6 +27,10 @@ const ActionCreator = {
   incrementStep: () => ({
     type: ActionType.INCREMENT_STEP,
     payload: 1,
+  }),
+
+  returnToStart: () => ({
+    type: ActionType.RETURN_TO_START,
   }),
 
   incrementMistakes: (question, userAnswer) => {
@@ -48,28 +53,19 @@ const ActionCreator = {
 };
 
 const reducer = (state = initialState, action) => {
-  const {step, questions, maxMistakes} = state;
+  const {step} = state;
 
   switch (action.type) {
+    case ActionType.RETURN_TO_START:
+      return {...initialState};
+
     case ActionType.INCREMENT_STEP:
-      let nextStep = step + action.payload;
-
-      if (nextStep >= questions.length) {
-        return {...initialState};
-      }
-
       return {
         ...state,
-        step: nextStep,
+        step: step + action.payload,
       };
 
     case ActionType.INCREMENT_MISTAKES:
-      const mistakes = state.mistakes + action.payload;
-
-      if (mistakes >= maxMistakes) {
-        return {...initialState};
-      }
-
       return {
         ...state,
         mistakes: state.mistakes + action.payload,

@@ -2,6 +2,7 @@ import React from 'react';
 import {BrowserRouter, Route, Switch} from 'react-router-dom';
 import {array, number, func} from 'prop-types';
 import {connect} from 'react-redux';
+import {store} from '../../index.js';
 import {ActionCreator} from '../../reducer.js';
 import WelcomeScreen from '../welcome-screen/welcome-screen.jsx';
 import QuestionArtistScreen from '../question-artist/question-artist.jsx';
@@ -91,9 +92,16 @@ const mapDispatchToProps = (dispatch) => ({
   onPlayButtonClick() {
     dispatch(ActionCreator.incrementStep());
   },
+
   onUserAnswer(question, answer) {
     dispatch(ActionCreator.incrementMistakes(question, answer));
-    dispatch(ActionCreator.incrementStep());
+    const {step, questions, mistakes, maxMistakes} = store.getState();
+
+    if (step + 1 >= questions.length || mistakes + 1 >= maxMistakes) {
+      dispatch(ActionCreator.returnToStart());
+    } else {
+      dispatch(ActionCreator.incrementStep());
+    }
   },
 });
 
