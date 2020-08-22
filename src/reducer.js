@@ -23,12 +23,10 @@ const ActionCreator = {
     type: ActionType.RETURN_TO_START,
   }),
 
-  incrementMistakes: () => {
-    return {
-      type: ActionType.INCREMENT_MISTAKES,
-      payload: 1,
-    };
-  },
+  incrementMistakes: () => ({
+    type: ActionType.INCREMENT_MISTAKES,
+    payload: 1,
+  }),
 };
 
 const reducer = (state = initialState, action) => {
