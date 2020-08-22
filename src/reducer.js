@@ -1,4 +1,3 @@
-import {QuestionType} from './const.js';
 import mockQuestions from './mocks/questions.js';
 
 const initialState = {
@@ -14,15 +13,6 @@ const ActionType = {
   RETURN_TO_START: `RETURN_TO_START`,
 };
 
-const isGenreAnswerCorrect = (question, userAnswer) => {
-  return Object.values(userAnswer).every((answer, i) => {
-    const correctAnswer = question.answers[i].genre === question.genre;
-    return answer === correctAnswer;
-  });
-};
-
-const isArtistAnswerCorrect = (question, userAnswer) => userAnswer.artist === question.song.artist;
-
 const ActionCreator = {
   incrementStep: () => ({
     type: ActionType.INCREMENT_STEP,
@@ -33,21 +23,10 @@ const ActionCreator = {
     type: ActionType.RETURN_TO_START,
   }),
 
-  incrementMistakes: (question, userAnswer) => {
-    let isAnswerCorrect = false;
-
-    switch (question.type) {
-      case QuestionType.GENRE:
-        isAnswerCorrect = isGenreAnswerCorrect(question, userAnswer);
-        break;
-      case QuestionType.ARTIST:
-        isAnswerCorrect = isArtistAnswerCorrect(question, userAnswer);
-        break;
-    }
-
+  incrementMistakes: () => {
     return {
       type: ActionType.INCREMENT_MISTAKES,
-      payload: isAnswerCorrect ? 0 : 1,
+      payload: 1,
     };
   },
 };

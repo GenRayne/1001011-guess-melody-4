@@ -9,6 +9,7 @@ import QuestionArtistScreen from '../question-artist/question-artist.jsx';
 import QuestionGenreScreen from '../question-genre/question-genre.jsx';
 import GameScreen from '../game-screen/game-screen.jsx';
 import {QuestionType} from '../../const.js';
+import {isAnswerCorrect} from '../../utils';
 
 const START_STEP = -1;
 
@@ -94,7 +95,10 @@ const mapDispatchToProps = (dispatch) => ({
   },
 
   onUserAnswer(question, answer) {
-    dispatch(ActionCreator.incrementMistakes(question, answer));
+    if (!isAnswerCorrect(question, answer)) {
+      dispatch(ActionCreator.incrementMistakes());
+    }
+
     const {step, questions, mistakes, maxMistakes} = store.getState();
 
     if (step + 1 >= questions.length || mistakes + 1 >= maxMistakes) {
