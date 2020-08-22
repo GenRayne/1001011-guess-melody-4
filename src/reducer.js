@@ -1,4 +1,3 @@
-import {extend} from './utils.js';
 import {QuestionType} from './const.js';
 import mockQuestions from './mocks/questions.js';
 
@@ -56,23 +55,25 @@ const reducer = (state = initialState, action) => {
       let nextStep = step + action.payload;
 
       if (nextStep >= questions.length) {
-        return extend({}, initialState);
+        return {...initialState};
       }
 
-      return extend(state, {
+      return {
+        ...state,
         step: nextStep,
-      });
+      };
 
     case ActionType.INCREMENT_MISTAKES:
       const mistakes = state.mistakes + action.payload;
 
       if (mistakes >= maxMistakes) {
-        return extend({}, initialState);
+        return {...initialState};
       }
 
-      return extend(state, {
-        mistakes: state.mistakes + action.payload
-      });
+      return {
+        ...state,
+        mistakes: state.mistakes + action.payload,
+      };
   }
 
   return state;

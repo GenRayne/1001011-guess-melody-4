@@ -11,7 +11,7 @@ import {QuestionType} from '../../const.js';
 
 const START_STEP = -1;
 
-const App = ({
+export const App = ({
   maxMistakes,
   questions,
   onPlayButtonClick,
@@ -97,5 +97,4 @@ const mapDispatchToProps = (dispatch) => ({
   },
 });
 
-export {App};
 export default connect(mapStateToProps, mapDispatchToProps)(App);

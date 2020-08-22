@@ -2,11 +2,11 @@ import React from 'react';
 import {number} from 'prop-types';
 
 const Mistakes = ({count}) => {
-  const mistakes = new Array(count).fill(``).map((_item, i) => ({key: i}));
+  const mistakes = new Array(count).fill(``);
 
   return (
     <div className="game__mistakes">
-      {mistakes.map(({key}) => <div key={`mistake-${key}`} className="wrong" />)}
+      {mistakes.map((_item, i) => <div key={`mistake-${i}`} className="wrong" />)}
     </div>
   );
 };
