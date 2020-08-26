@@ -1,10 +1,12 @@
 import React from 'react';
-import {oneOf, oneOfType, arrayOf, node, number} from 'prop-types';
-import {connect} from 'react-redux';
+import {oneOf, oneOfType, arrayOf, node} from 'prop-types';
+import {useSelector} from 'react-redux';
 import {QuestionType} from '../../const.js';
 import Mistakes from '../mistakes/mistakes.jsx';
 
-const GameScreen = ({type, children, mistakes}) => {
+export const GameScreen = ({type, children}) => {
+  const mistakes = useSelector((state) => state.mistakes);
+
   return (
     <section className={`game game--${type}`}>
       <header className="game__header">
@@ -42,12 +44,4 @@ GameScreen.propTypes = {
     node,
     arrayOf(node),
   ]).isRequired,
-  mistakes: number.isRequired,
 };
-
-const mapStateToProps = (state) => ({
-  mistakes: state.mistakes,
-});
-
-export {GameScreen};
-export default connect(mapStateToProps)(GameScreen);

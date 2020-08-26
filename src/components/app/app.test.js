@@ -7,23 +7,38 @@ import questions from '../../mocks/test-questions.js';
 
 const noopHandler = () => {};
 const mockStore = configureStore([]);
+const maxMistakes = 3;
 
-const store = mockStore({
-  mistakes: 0
+const store1 = mockStore({
+  mistakes: 0,
+  step: -1,
+  questions,
+  maxMistakes,
+  onPlayButtonClick: noopHandler,
+});
+
+const store2 = mockStore({
+  mistakes: 0,
+  step: 0,
+  questions,
+  maxMistakes,
+  onPlayButtonClick: noopHandler,
+});
+
+const store3 = mockStore({
+  mistakes: 0,
+  step: 1,
+  questions,
+  maxMistakes,
+  onPlayButtonClick: noopHandler,
 });
 
 describe(`Render App`, () => {
   it(`renders WelcomeScreen`, () => {
     const tree = renderer
       .create(
-          <Provider store={store}>
-            <App
-              maxMistakes={3}
-              questions={questions}
-              onPlayButtonClick={noopHandler}
-              onUserAnswer={noopHandler}
-              step={-1}
-            />
+          <Provider store={store1}>
+            <App />
           </Provider>
       )
       .toJSON();
@@ -34,14 +49,8 @@ describe(`Render App`, () => {
   it(`renders QuestionGenre`, () => {
     const tree = renderer
       .create(
-          <Provider store={store}>
-            <App
-              maxMistakes={3}
-              questions={questions}
-              onPlayButtonClick={noopHandler}
-              onUserAnswer={noopHandler}
-              step={0}
-            />
+          <Provider store={store2}>
+            <App />
           </Provider>, {
             createNodeMock: () => ({
               play: noopHandler,
@@ -57,14 +66,8 @@ describe(`Render App`, () => {
   it(`renders QuestionArtist`, () => {
     const tree = renderer
       .create(
-          <Provider store={store}>
-            <App
-              maxMistakes={3}
-              questions={questions}
-              onPlayButtonClick={noopHandler}
-              onUserAnswer={noopHandler}
-              step={1}
-            />
+          <Provider store={store3}>
+            <App />
           </Provider>, {
             createNodeMock: () => ({
               play: noopHandler,

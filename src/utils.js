@@ -14,15 +14,12 @@ export const isGenreAnswerCorrect = (question, userAnswer) => {
 export const isArtistAnswerCorrect = (question, userAnswer) => userAnswer.artist === question.song.artist;
 
 export const isAnswerCorrect = (question, userAnswer) => {
-  let isCorrect = false;
-
   switch (question.type) {
     case QuestionType.GENRE:
-      isCorrect = isGenreAnswerCorrect(question, userAnswer);
-      break;
+      return isGenreAnswerCorrect(question, userAnswer);
     case QuestionType.ARTIST:
-      isCorrect = isArtistAnswerCorrect(question, userAnswer);
-      break;
+      return isArtistAnswerCorrect(question, userAnswer);
+    default:
+      return false;
   }
-  return isCorrect;
 };

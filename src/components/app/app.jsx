@@ -1,25 +1,43 @@
 import React from 'react';
 import {BrowserRouter, Route, Switch} from 'react-router-dom';
-import {array, number, func} from 'prop-types';
-import {connect} from 'react-redux';
-import {store} from '../../index.js';
+import {useSelector, useDispatch} from 'react-redux';
 import {ActionCreator} from '../../reducer.js';
 import WelcomeScreen from '../welcome-screen/welcome-screen.jsx';
 import QuestionArtistScreen from '../question-artist/question-artist.jsx';
 import QuestionGenreScreen from '../question-genre/question-genre.jsx';
-import GameScreen from '../game-screen/game-screen.jsx';
+import {GameScreen} from '../game-screen/game-screen.jsx';
 import {QuestionType} from '../../const.js';
 import {isAnswerCorrect} from '../../utils';
 
 const START_STEP = -1;
 
-export const App = ({
-  maxMistakes,
-  questions,
-  onPlayButtonClick,
-  onUserAnswer,
-  step,
-}) => {
+export const App = () => {
+  const dispatch = useDispatch();
+  const {step, mistakes, maxMistakes, questions} = useSelector((state) => ({
+    step: state.step,
+    mistakes: state.mistakes,
+    maxMistakes: state.maxMistakes,
+    questions: state.questions,
+  }));
+
+  const onPlayButtonClick = () => {
+    dispatch(ActionCreator.incrementStep());
+  };
+
+  const onUserAnswer = (question, answer) => {
+    const isCorrect = isAnswerCorrect(question, answer);
+
+    if (!isCorrect) {
+      dispatch(ActionCreator.incrementMistakes());
+    }
+
+    if (step + 1 >= questions.length || (!isCorrect && mistakes + 1 >= maxMistakes)) {
+      dispatch(ActionCreator.returnToStart());
+    } else {
+      dispatch(ActionCreator.incrementStep());
+    }
+  };
+
   const renderGameScreen = () => {
     const currentQuestion = questions[step];
 
@@ -74,39 +92,3 @@ export const App = ({
     </BrowserRouter>
   );
 };
-
-App.propTypes = {
-  maxMistakes: number.isRequired,
-  questions: array.isRequired,
-  onPlayButtonClick: func.isRequired,
-  onUserAnswer: func.isRequired,
-  step: number.isRequired,
-};
-
-const mapStateToProps = (state) => ({
-  step: state.step,
-  maxMistakes: state.maxMistakes,
-  questions: state.questions,
-});
-
-const mapDispatchToProps = (dispatch) => ({
-  onPlayButtonClick() {
-    dispatch(ActionCreator.incrementStep());
-  },
-
-  onUserAnswer(question, answer) {
-    if (!isAnswerCorrect(question, answer)) {
-      dispatch(ActionCreator.incrementMistakes());
-    }
-
-    const {step, questions, mistakes, maxMistakes} = store.getState();
-
-    if (step + 1 >= questions.length || mistakes + 1 >= maxMistakes) {
-      dispatch(ActionCreator.returnToStart());
-    } else {
-      dispatch(ActionCreator.incrementStep());
-    }
-  },
-});
-
-export default connect(mapStateToProps, mapDispatchToProps)(App);
