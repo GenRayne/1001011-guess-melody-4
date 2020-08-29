@@ -5,8 +5,8 @@ export const capitalizeFirstLetter = (word) => {
 };
 
 export const isGenreAnswerCorrect = (question, userAnswer) => {
-  return Object.values(userAnswer).every((answer, i) => {
-    const correctAnswer = question.answers[i].genre === question.genre;
+  return Object.entries(userAnswer).every(([key, answer]) => {
+    const correctAnswer = question.answers[key - 1].genre === question.genre;
     return answer === correctAnswer;
   });
 };
