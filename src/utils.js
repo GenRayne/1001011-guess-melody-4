@@ -5,7 +5,12 @@ export const capitalizeFirstLetter = (word) => {
 };
 
 export const isGenreAnswerCorrect = (question, userAnswer) => {
-  return Object.entries(userAnswer).every(([key, answer]) => {
+  const answers = Object.entries(userAnswer);
+
+  if (!answers.length) {
+    return false;
+  }
+  return answers.every(([key, answer]) => {
     const correctAnswer = question.answers[key - 1].genre === question.genre;
     return answer === correctAnswer;
   });

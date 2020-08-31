@@ -17,6 +17,7 @@ describe(`answer correctness`, () => {
   });
 
   it(`returns false if genre answer is incorrect`, () => {
+    expect(isGenreAnswerCorrect(genreQuestion, {})).toEqual(false);
     expect(isGenreAnswerCorrect(genreQuestion, {2: true})).toEqual(false);
     expect(isGenreAnswerCorrect(genreQuestion, {1: true, 2: true})).toEqual(false);
   });
