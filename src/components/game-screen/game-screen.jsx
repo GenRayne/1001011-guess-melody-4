@@ -1,8 +1,12 @@
 import React from 'react';
 import {oneOf, oneOfType, arrayOf, node} from 'prop-types';
+import {useSelector} from 'react-redux';
 import {QuestionType} from '../../const.js';
+import Mistakes from '../mistakes/mistakes.jsx';
 
-const GameScreen = ({type, children}) => {
+export const GameScreen = ({type, children}) => {
+  const mistakes = useSelector((state) => state.mistakes);
+
   return (
     <section className={`game game--${type}`}>
       <header className="game__header">
@@ -21,11 +25,7 @@ const GameScreen = ({type, children}) => {
           />
         </svg>
 
-        <div className="game__mistakes">
-          <div className="wrong"></div>
-          <div className="wrong"></div>
-          <div className="wrong"></div>
-        </div>
+        <Mistakes count={mistakes} />
       </header>
 
       <section className="game__screen">
@@ -45,5 +45,3 @@ GameScreen.propTypes = {
     arrayOf(node),
   ]).isRequired,
 };
-
-export default GameScreen;

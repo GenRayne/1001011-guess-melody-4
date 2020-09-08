@@ -52,3 +52,47 @@ export default [
     ]
   }
 ];
+
+export const genreQuestion = {
+  type: `genre`,
+  genre: `rock`,
+  answers: [
+    {
+      id: `1`,
+      genre: `rock`,
+      src: ``,
+    }, {
+      id: `2`,
+      genre: `jazz`,
+      src: ``,
+    }, {
+      id: `3`,
+      genre: `blues`,
+      src: ``,
+    }, {
+      id: `4`,
+      genre: `blues`,
+      src: ``,
+    },
+  ]
+};
+
+export const artistQuestion = {
+  type: `artist`,
+  song: {
+    artist: `correct`,
+    src: ``,
+  },
+  answers: [
+    {
+      artist: `correct`,
+      picture: ``,
+    }, {
+      artist: `incorrect`,
+      picture: ``,
+    }, {
+      artist: `incorrect-2`,
+      picture: ``,
+    },
+  ]
+};

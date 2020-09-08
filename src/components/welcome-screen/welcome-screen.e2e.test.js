@@ -8,7 +8,7 @@ describe(`Play button click`, () => {
 
     const welcomeScreen = shallow(
         <WelcomeScreen
-          errorsCount={3}
+          mistakesCount={3}
           onPlayButtonClick={onPlayButtonClick}
         />
     );

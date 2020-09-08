@@ -1,23 +1,40 @@
 import React from 'react';
 import renderer from 'react-test-renderer';
-import GameScreen from './game-screen.jsx';
-import QuestionArtist from '../question-artist/question-artist.jsx';
-import questions from '../../mocks/test-questions.js';
+import configureStore from 'redux-mock-store';
+import {Provider} from 'react-redux';
+import {GameScreen} from './game-screen.jsx';
 import {QuestionType} from '../../const.js';
 
-describe(`render GameScreen`, () => {
-  it(`renders GameScreen`, () => {
-    const handler = () => {};
+const mockStore = configureStore([]);
+const children = <div />;
 
+const store = mockStore({
+  mistakes: 0,
+});
+
+describe(`render GameScreen`, () => {
+  it(`renders GameScreen with QuestionArtist`, () => {
     const tree = renderer
       .create(
-          <GameScreen type={QuestionType.ARTIST}>
-            <QuestionArtist
-              question={questions[1]}
-              onAnswer={handler}
-              renderPlayer={handler}
-            />
-          </GameScreen>
+          <Provider store={store}>
+            <GameScreen type={QuestionType.ARTIST} mistakes={3}>
+              {children}
+            </GameScreen>
+          </Provider>
+      )
+      .toJSON();
+
+    expect(tree).toMatchSnapshot();
+  });
+
+  it(`renders GameScreen with QuestionGenre`, () => {
+    const tree = renderer
+      .create(
+          <Provider store={store}>
+            <GameScreen type={QuestionType.GENRE} mistakes={3}>
+              {children}
+            </GameScreen>
+          </Provider>
       )
       .toJSON();
 
