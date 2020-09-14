@@ -69,6 +69,9 @@ exports[`Render App renders QuestionArtist 1`] = `
         <div
           className="track__status"
         >
+          <div
+            className="track__status-line"
+          />
           <audio />
         </div>
       </div>
@@ -220,6 +223,9 @@ exports[`Render App renders QuestionGenre 1`] = `
         <div
           className="track__status"
         >
+          <div
+            className="track__status-line"
+          />
           <audio />
         </div>
         <div
@@ -255,6 +261,9 @@ exports[`Render App renders QuestionGenre 1`] = `
         <div
           className="track__status"
         >
+          <div
+            className="track__status-line"
+          />
           <audio />
         </div>
         <div
@@ -290,6 +299,9 @@ exports[`Render App renders QuestionGenre 1`] = `
         <div
           className="track__status"
         >
+          <div
+            className="track__status-line"
+          />
           <audio />
         </div>
         <div
@@ -325,6 +337,9 @@ exports[`Render App renders QuestionGenre 1`] = `
         <div
           className="track__status"
         >
+          <div
+            className="track__status-line"
+          />
           <audio />
         </div>
         <div
