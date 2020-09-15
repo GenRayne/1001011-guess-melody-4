@@ -32,8 +32,8 @@ const AudioPlayer = ({src, isNowPlaying, onPlayButtonClick}) => {
     return () => {
       audio.src = ``;
       audio.oncanplaythrough = null;
-      audio.duration = null;
       audio.ontimeupdate = null;
+      setDuration(null);
     };
   }, []);
 
