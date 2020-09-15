@@ -50,5 +50,31 @@ export default [
         artist: `Jim Beam`,
       },
     ]
-  }
+  },
+  {
+    type: QuestionType.GENRE,
+    genre: `rock`,
+    answers: [
+      {
+        id: `1`,
+        src: `https://upload.wikimedia.org/wikipedia/commons/4/4e/BWV_543-fugue.ogg`,
+        genre: `rock`,
+      },
+      {
+        id: `2`,
+        src: `https://upload.wikimedia.org/wikipedia/commons/4/4e/BWV_543-fugue.ogg`,
+        genre: `blues`,
+      },
+      {
+        id: `3`,
+        src: `https://upload.wikimedia.org/wikipedia/commons/4/4e/BWV_543-fugue.ogg`,
+        genre: `jazz`,
+      },
+      {
+        id: `4`,
+        src: `https://upload.wikimedia.org/wikipedia/commons/4/4e/BWV_543-fugue.ogg`,
+        genre: `rock`,
+      }
+    ]
+  },
 ];

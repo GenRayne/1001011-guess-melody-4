@@ -1,7 +1,8 @@
 import mockQuestions from './mocks/questions.js';
+import {START_STEP} from './const.js';
 
 const initialState = {
-  step: -1,
+  step: START_STEP,
   mistakes: 0,
   maxMistakes: 3,
   questions: mockQuestions,
@@ -34,7 +35,7 @@ const reducer = (state = initialState, action) => {
 
   switch (action.type) {
     case ActionType.RETURN_TO_START:
-      return {...initialState};
+      return {...initialState, step: 0};
 
     case ActionType.INCREMENT_STEP:
       return {

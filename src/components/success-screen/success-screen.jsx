@@ -7,15 +7,15 @@ import {ReplayButton} from '../replay-button/replay-button.jsx';
 
 export const SuccessScreen = ({questionsCount, mistakesCount}) => {
   const correctAnswersCount = questionsCount - mistakesCount;
-  const questionDeclined = getDeclinedNoun(correctAnswersCount, questionDeclensions);
-  const mistakesDeclined = getDeclinedNoun(mistakesCount, mistakesDeclensions);
+  const questionNoun = getDeclinedNoun(correctAnswersCount, questionDeclensions);
+  const mistakesNoun = getDeclinedNoun(mistakesCount, mistakesDeclensions);
 
   return (
     <section className="result">
       <ResultLogo />
       <h2 className="result__title">Вы настоящий меломан!</h2>
       <p className="result__total">
-        Вы ответили правильно на {correctAnswersCount}&nbsp;{questionDeclined} и совершили {mistakesCount}&nbsp;{mistakesDeclined}
+        Вы ответили правильно на {correctAnswersCount}&nbsp;{questionNoun} и совершили {mistakesCount}&nbsp;{mistakesNoun}
       </p>
       <ReplayButton />
     </section>

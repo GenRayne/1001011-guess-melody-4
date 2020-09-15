@@ -1,3 +1,5 @@
+export const START_STEP = -1;
+
 export const questionDeclensions = [`воспрос`, `вопроса`, `вопросов`];
 
 export const mistakesDeclensions = [`ошибку`, `ошибки`, `ошибок`];

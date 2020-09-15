@@ -6,10 +6,10 @@ import WelcomeScreen from '../welcome-screen/welcome-screen.jsx';
 import QuestionArtistScreen from '../question-artist/question-artist.jsx';
 import QuestionGenreScreen from '../question-genre/question-genre.jsx';
 import {GameScreen} from '../game-screen/game-screen.jsx';
-import {QuestionType} from '../../const.js';
+import {FailScreen} from '../fail-screen/fail-screen.jsx';
+import {SuccessScreen} from '../success-screen/success-screen.jsx';
+import {START_STEP, QuestionType} from '../../const.js';
 import {isAnswerCorrect} from '../../utils';
-
-const START_STEP = -1;
 
 export const App = () => {
   const dispatch = useDispatch();
@@ -30,18 +30,21 @@ export const App = () => {
     if (!isCorrect) {
       dispatch(ActionCreator.incrementMistakes());
     }
-
-    if (step + 1 >= questions.length || (!isCorrect && mistakes + 1 >= maxMistakes)) {
-      dispatch(ActionCreator.returnToStart());
-    } else {
-      dispatch(ActionCreator.incrementStep());
-    }
+    dispatch(ActionCreator.incrementStep());
   };
 
   const renderGameScreen = () => {
     const currentQuestion = questions[step];
 
-    if (step === START_STEP || step >= questions.length) {
+    if (mistakes === 3) {
+      return <FailScreen />;
+    }
+
+    if (step >= questions.length && mistakes < 3) {
+      return <SuccessScreen questionsCount={questions.length} mistakesCount={mistakes} />;
+    }
+
+    if (step === START_STEP) {
       return (
         <WelcomeScreen
           mistakesCount={maxMistakes}

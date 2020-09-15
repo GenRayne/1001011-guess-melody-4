@@ -1,7 +1,11 @@
 import React from 'react';
 import PropTypes from 'prop-types';
+import {getDeclinedNoun} from '../../utils';
+import {mistakesDeclensions} from '../../const';
 
 const WelcomeScreen = ({mistakesCount, onPlayButtonClick}) => {
+  const mistakesNoun = getDeclinedNoun(mistakesCount, mistakesDeclensions);
+
   return (
     <section className="welcome">
       <div className="welcome__logo">
@@ -17,7 +21,7 @@ const WelcomeScreen = ({mistakesCount, onPlayButtonClick}) => {
       <p className="welcome__text">Правила просты:</p>
       <ul className="welcome__rules-list">
         <li>Нужно ответить на все вопросы.</li>
-        <li>Можно допустить {mistakesCount} ошибки.</li>
+        <li>Можно допустить {mistakesCount} {mistakesNoun}.</li>
       </ul>
       <p className="welcome__text">Удачи!</p>
     </section>
