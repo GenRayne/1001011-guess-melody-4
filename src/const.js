@@ -1,6 +1,6 @@
 export const START_STEP = -1;
 
-export const questionDeclensions = [`воспрос`, `вопроса`, `вопросов`];
+export const questionDeclensions = [`вопрос`, `вопроса`, `вопросов`];
 
 export const mistakesDeclensions = [`ошибку`, `ошибки`, `ошибок`];
 
@@ -12,4 +12,11 @@ export const Color = {
 export const QuestionType = {
   ARTIST: `artist`,
   GENRE: `genre`
+};
+
+export const GameStatus = {
+  START: `Start`,
+  QUESTION: `Question`,
+  FAIL: `Fail`,
+  SUCCESS: `Success`,
 };
