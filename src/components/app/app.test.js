@@ -2,8 +2,9 @@ import React from 'react';
 import renderer from 'react-test-renderer';
 import {Provider} from 'react-redux';
 import configureStore from 'redux-mock-store';
-import {App} from './app.jsx';
 import questions from '../../mocks/test-questions.js';
+import {GameStatus} from '../../const';
+import {App} from './app.jsx';
 
 const noopHandler = () => {};
 const mockStore = configureStore([]);
@@ -15,6 +16,7 @@ const store1 = mockStore({
   questions,
   maxMistakes,
   onPlayButtonClick: noopHandler,
+  gameStatus: GameStatus.START,
 });
 
 const store2 = mockStore({
@@ -23,6 +25,7 @@ const store2 = mockStore({
   questions,
   maxMistakes,
   onPlayButtonClick: noopHandler,
+  gameStatus: GameStatus.QUESTION,
 });
 
 const store3 = mockStore({
@@ -31,6 +34,7 @@ const store3 = mockStore({
   questions,
   maxMistakes,
   onPlayButtonClick: noopHandler,
+  gameStatus: GameStatus.QUESTION,
 });
 
 const store4 = mockStore({
@@ -39,6 +43,7 @@ const store4 = mockStore({
   questions,
   maxMistakes,
   onPlayButtonClick: noopHandler,
+  gameStatus: GameStatus.FAIL,
 });
 
 const store5 = mockStore({
@@ -47,6 +52,7 @@ const store5 = mockStore({
   questions,
   maxMistakes,
   onPlayButtonClick: noopHandler,
+  gameStatus: GameStatus.SUCCESS,
 });
 
 describe(`Render App`, () => {
