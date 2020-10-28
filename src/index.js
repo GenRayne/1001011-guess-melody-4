@@ -5,6 +5,7 @@ import {Provider} from 'react-redux';
 import {StatusCalculator} from './middleware';
 import {App} from './components/app/app.jsx';
 import {reducer} from './reducer.js';
+import './i18n';
 
 const store = createStore(
     reducer,
