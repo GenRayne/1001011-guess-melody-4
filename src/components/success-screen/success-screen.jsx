@@ -1,20 +1,14 @@
 import React from 'react';
 import {useTranslation} from 'react-i18next';
 import {number} from 'prop-types';
-import {getDeclinedNoun} from '../../utils';
-import {
-  // questionDeclensions,
-  mistakesDeclensions
-} from '../../const';
 import {ResultLogo} from '../result-logo/result-logo.jsx';
 import {ReplayButton} from '../replay-button/replay-button.jsx';
 
 export const SuccessScreen = ({questionsCount, mistakesCount}) => {
-  const {t} = useTranslation(`declensions`);
+  const {t} = useTranslation();
   const correctAnswersCount = questionsCount - mistakesCount;
   const questionNoun = t(`question`, {count: correctAnswersCount});
-  // const questionNoun = getDeclinedNoun(correctAnswersCount, questionDeclensions);
-  const mistakesNoun = getDeclinedNoun(mistakesCount, mistakesDeclensions);
+  const mistakesNoun = t(`mistake`, {count: mistakesCount});
 
   return (
     <section className="result">

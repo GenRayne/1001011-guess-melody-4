@@ -1,10 +1,10 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import {getDeclinedNoun} from '../../utils';
-import {mistakesDeclensions} from '../../const';
+import {useTranslation} from 'react-i18next';
 
 const WelcomeScreen = ({mistakesCount, onPlayButtonClick}) => {
-  const mistakesNoun = getDeclinedNoun(mistakesCount, mistakesDeclensions);
+  const {t} = useTranslation();
+  const mistakesNoun = t(`mistake`, {count: mistakesCount});
 
   return (
     <section className="welcome">

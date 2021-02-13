@@ -1,5 +1,8 @@
 import {QuestionType} from '../const.js';
 
+const AVATAR_URL = `https://i.pravatar.cc/128`;
+const SONG_SRC = `https://upload.wikimedia.org/wikipedia/commons/4/4e/BWV_543-fugue.ogg`;
+
 export default [
   {
     type: QuestionType.GENRE,
@@ -7,22 +10,22 @@ export default [
     answers: [
       {
         id: `1`,
-        src: `https://upload.wikimedia.org/wikipedia/commons/4/4e/BWV_543-fugue.ogg`,
+        src: SONG_SRC,
         genre: `rock`,
       },
       {
         id: `2`,
-        src: `https://upload.wikimedia.org/wikipedia/commons/4/4e/BWV_543-fugue.ogg`,
+        src: SONG_SRC,
         genre: `blues`,
       },
       {
         id: `3`,
-        src: `https://upload.wikimedia.org/wikipedia/commons/4/4e/BWV_543-fugue.ogg`,
+        src: SONG_SRC,
         genre: `jazz`,
       },
       {
         id: `4`,
-        src: `https://upload.wikimedia.org/wikipedia/commons/4/4e/BWV_543-fugue.ogg`,
+        src: SONG_SRC,
         genre: `rock`,
       }
     ]
@@ -31,22 +34,22 @@ export default [
     type: QuestionType.ARTIST,
     song: {
       artist: `Jim Beam`,
-      src: `https://upload.wikimedia.org/wikipedia/commons/4/4e/BWV_543-fugue.ogg`
+      src: SONG_SRC
     },
     answers: [
       {
         id: `1`,
-        picture: `https://api.adorable.io/avatars/128/10`,
+        picture: `${AVATAR_URL}?rnd=1`,
         artist: `John Snow`,
       },
       {
         id: `2`,
-        picture: `https://api.adorable.io/avatars/128/16`,
+        picture: `${AVATAR_URL}?rnd=2`,
         artist: `Jack Daniels`,
       },
       {
         id: `3`,
-        picture: `https://api.adorable.io/avatars/128/24`,
+        picture: `${AVATAR_URL}?rnd=3`,
         artist: `Jim Beam`,
       },
     ]
@@ -57,22 +60,22 @@ export default [
     answers: [
       {
         id: `1`,
-        src: `https://upload.wikimedia.org/wikipedia/commons/4/4e/BWV_543-fugue.ogg`,
+        src: SONG_SRC,
         genre: `rock`,
       },
       {
         id: `2`,
-        src: `https://upload.wikimedia.org/wikipedia/commons/4/4e/BWV_543-fugue.ogg`,
+        src: SONG_SRC,
         genre: `blues`,
       },
       {
         id: `3`,
-        src: `https://upload.wikimedia.org/wikipedia/commons/4/4e/BWV_543-fugue.ogg`,
+        src: SONG_SRC,
         genre: `jazz`,
       },
       {
         id: `4`,
-        src: `https://upload.wikimedia.org/wikipedia/commons/4/4e/BWV_543-fugue.ogg`,
+        src: SONG_SRC,
         genre: `rock`,
       }
     ]

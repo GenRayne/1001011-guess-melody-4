@@ -1,0 +1,13 @@
+{
+  "ru": {
+    "translation": {
+      "question_0": "вопрос",
+      "question_1": "вопроса",
+      "question_2": "вопросов",
+
+      "mistake_0": "ошибку",
+      "mistake_1": "ошибки",
+      "mistake_2": "ошибок"
+    }
+  }
+}
