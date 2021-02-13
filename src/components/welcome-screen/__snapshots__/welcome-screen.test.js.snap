@@ -44,7 +44,7 @@ exports[`Render WelcomeScreen renders WelcomeScreen 1`] = `
       Можно допустить 
       3
        
-      ошибки
+      mistake
       .
     </li>
   </ul>
