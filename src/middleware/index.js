@@ -15,7 +15,7 @@ export const StatusCalculator = (store) => (next) => (action) => {
   const {gameStatus} = store.getState();
 
   if (action.type === ActionType.INCREMENT_STEP) {
-    if (step >= questions.length - 1 && mistakes < maxMistakes - 1) {
+    if (step >= questions.length - 1 && mistakes < maxMistakes) {
       dispatch(ActionCreator.setGameStatus(GameStatus.SUCCESS));
     } else if (gameStatus !== GameStatus.FAIL) {
       dispatch(ActionCreator.setGameStatus(GameStatus.QUESTION));
