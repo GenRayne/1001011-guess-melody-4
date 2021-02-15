@@ -10,56 +10,20 @@ const noopHandler = () => {};
 const mockStore = configureStore([]);
 const maxMistakes = 3;
 
-const store1 = mockStore({
-  mistakes: 0,
-  step: -1,
-  questions,
-  maxMistakes,
-  onPlayButtonClick: noopHandler,
-  gameStatus: GameStatus.START,
-});
-
-const store2 = mockStore({
-  mistakes: 0,
-  step: 0,
-  questions,
-  maxMistakes,
-  onPlayButtonClick: noopHandler,
-  gameStatus: GameStatus.QUESTION,
-});
-
-const store3 = mockStore({
-  mistakes: 0,
-  step: 1,
-  questions,
-  maxMistakes,
-  onPlayButtonClick: noopHandler,
-  gameStatus: GameStatus.QUESTION,
-});
-
-const store4 = mockStore({
-  mistakes: 3,
-  step: 2,
-  questions,
-  maxMistakes,
-  onPlayButtonClick: noopHandler,
-  gameStatus: GameStatus.FAIL,
-});
-
-const store5 = mockStore({
-  mistakes: 0,
-  step: 3,
-  questions,
-  maxMistakes,
-  onPlayButtonClick: noopHandler,
-  gameStatus: GameStatus.SUCCESS,
-});
-
 describe(`Render App`, () => {
   it(`renders WelcomeScreen`, () => {
+    const store = mockStore({
+      mistakes: 0,
+      step: -1,
+      questions,
+      maxMistakes,
+      onPlayButtonClick: noopHandler,
+      gameStatus: GameStatus.START,
+    });
+
     const tree = renderer
       .create(
-          <Provider store={store1}>
+          <Provider store={store}>
             <App />
           </Provider>
       )
@@ -69,9 +33,18 @@ describe(`Render App`, () => {
   });
 
   it(`renders QuestionGenre`, () => {
+    const store = mockStore({
+      mistakes: 0,
+      step: 0,
+      questions,
+      maxMistakes,
+      onPlayButtonClick: noopHandler,
+      gameStatus: GameStatus.QUESTION,
+    });
+
     const tree = renderer
       .create(
-          <Provider store={store2}>
+          <Provider store={store}>
             <App />
           </Provider>, {
             createNodeMock: () => ({
@@ -86,9 +59,18 @@ describe(`Render App`, () => {
   });
 
   it(`renders QuestionArtist`, () => {
+    const store = mockStore({
+      mistakes: 0,
+      step: 1,
+      questions,
+      maxMistakes,
+      onPlayButtonClick: noopHandler,
+      gameStatus: GameStatus.QUESTION,
+    });
+
     const tree = renderer
       .create(
-          <Provider store={store3}>
+          <Provider store={store}>
             <App />
           </Provider>, {
             createNodeMock: () => ({
@@ -103,9 +85,18 @@ describe(`Render App`, () => {
   });
 
   it(`renders FailScreen`, () => {
+    const store = mockStore({
+      mistakes: 3,
+      step: 2,
+      questions,
+      maxMistakes,
+      onPlayButtonClick: noopHandler,
+      gameStatus: GameStatus.FAIL,
+    });
+
     const tree = renderer
       .create(
-          <Provider store={store4}>
+          <Provider store={store}>
             <App />
           </Provider>
       )
@@ -115,9 +106,18 @@ describe(`Render App`, () => {
   });
 
   it(`renders SuccessScreen`, () => {
+    const store = mockStore({
+      mistakes: 0,
+      step: 3,
+      questions,
+      maxMistakes,
+      onPlayButtonClick: noopHandler,
+      gameStatus: GameStatus.SUCCESS,
+    });
+
     const tree = renderer
       .create(
-          <Provider store={store5}>
+          <Provider store={store}>
             <App />
           </Provider>
       )
