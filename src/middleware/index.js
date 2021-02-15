@@ -1,7 +1,7 @@
 import {ActionCreator, ActionType} from '../reducer';
 import {GameStatus} from '../const';
 
-export const StatusCalculator = (store) => (next) => (action) => {
+export const statusCalculatorMiddleware = (store) => (next) => (action) => {
   const {dispatch} = store;
 
   const {step, mistakes, maxMistakes, questions} = store.getState();

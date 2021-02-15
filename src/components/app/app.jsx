@@ -75,8 +75,11 @@ export const App = () => {
               );
           }
         }
+        break;
+
+      default:
+        return null;
     }
-    return null;
   };
 
   return (
