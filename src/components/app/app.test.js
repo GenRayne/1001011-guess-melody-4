@@ -2,6 +2,7 @@ import React from 'react';
 import renderer from 'react-test-renderer';
 import {Provider} from 'react-redux';
 import configureStore from 'redux-mock-store';
+import '../../i18n';
 import questions from '../../mocks/test-questions.js';
 import {GameStatus} from '../../const';
 import {App} from './app.jsx';

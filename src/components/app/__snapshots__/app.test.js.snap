@@ -432,11 +432,11 @@ exports[`Render App renders SuccessScreen 1`] = `
     Вы ответили правильно на 
     3
      
-    question
+    вопроса
      и совершили 
     0
      
-    mistake
+    ошибок
   </p>
   <button
     className="replay"
@@ -492,7 +492,7 @@ exports[`Render App renders WelcomeScreen 1`] = `
       Можно допустить 
       3
        
-      mistake
+      ошибки
       .
     </li>
   </ul>
