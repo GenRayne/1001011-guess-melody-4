@@ -4,9 +4,8 @@ import {number} from 'prop-types';
 import {ResultLogo} from '../result-logo/result-logo.jsx';
 import {ReplayButton} from '../replay-button/replay-button.jsx';
 
-export const SuccessScreen = ({questionsCount, mistakesCount}) => {
+export const SuccessScreen = ({correctAnswersCount, mistakesCount}) => {
   const {t} = useTranslation();
-  const correctAnswersCount = questionsCount - mistakesCount;
   const questionNoun = t(`question`, {count: correctAnswersCount});
   const mistakesNoun = t(`mistake`, {count: mistakesCount});
 
@@ -23,6 +22,6 @@ export const SuccessScreen = ({questionsCount, mistakesCount}) => {
 };
 
 SuccessScreen.propTypes = {
-  questionsCount: number.isRequired,
+  correctAnswersCount: number.isRequired,
   mistakesCount: number.isRequired,
 };

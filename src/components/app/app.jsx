@@ -13,8 +13,9 @@ import {isAnswerCorrect} from '../../utils';
 
 export const App = () => {
   const dispatch = useDispatch();
-  const {step, mistakes, maxMistakes, questions, gameStatus} = useSelector((state) => ({
+  const {step, correctAnswers, mistakes, maxMistakes, questions, gameStatus} = useSelector((state) => ({
     step: state.step,
+    correctAnswers: state.correctAnswers,
     mistakes: state.mistakes,
     maxMistakes: state.maxMistakes,
     questions: state.questions,
@@ -28,7 +29,9 @@ export const App = () => {
   const onUserAnswer = (question, answer) => {
     const isCorrect = isAnswerCorrect(question, answer);
 
-    if (!isCorrect) {
+    if (isCorrect) {
+      dispatch(ActionCreator.incrementCorrectAnswers());
+    } else {
       dispatch(ActionCreator.incrementMistakes());
     }
     dispatch(ActionCreator.incrementStep());
@@ -50,7 +53,7 @@ export const App = () => {
         return <FailScreen />;
 
       case GameStatus.SUCCESS:
-        return <SuccessScreen questionsCount={questions.length} mistakesCount={mistakes} />;
+        return <SuccessScreen correctAnswersCount={correctAnswers} mistakesCount={mistakes} />;
 
       case GameStatus.QUESTION:
         if (currentQuestion) {

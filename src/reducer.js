@@ -3,6 +3,7 @@ import {START_STEP, GameStatus} from './const.js';
 
 const initialState = {
   step: START_STEP,
+  correctAnswers: 0,
   mistakes: 0,
   maxMistakes: 3,
   questions: mockQuestions,
@@ -11,6 +12,7 @@ const initialState = {
 
 const ActionType = {
   INCREMENT_STEP: `INCREMENT_STEP`,
+  INCREMENT_CORRECT_ANSWERS: `INCREMENT_CORRECT_ANSWERS`,
   INCREMENT_MISTAKES: `INCREMENT_MISTAKES`,
   RETURN_TO_START: `RETURN_TO_START`,
   SET_GAME_STATUS: `SET_GAME_STATUS`,
@@ -26,6 +28,11 @@ const ActionCreator = {
     type: ActionType.RETURN_TO_START,
   }),
 
+  incrementCorrectAnswers: () => ({
+    type: ActionType.INCREMENT_CORRECT_ANSWERS,
+    payload: 1,
+  }),
+
   incrementMistakes: () => ({
     type: ActionType.INCREMENT_MISTAKES,
     payload: 1,
@@ -38,7 +45,7 @@ const ActionCreator = {
 };
 
 const reducer = (state = initialState, action) => {
-  const {step} = state;
+  const {step, correctAnswers, mistakes} = state;
 
   switch (action.type) {
     case ActionType.RETURN_TO_START:
@@ -54,10 +61,16 @@ const reducer = (state = initialState, action) => {
         step: step + action.payload,
       };
 
+    case ActionType.INCREMENT_CORRECT_ANSWERS:
+      return {
+        ...state,
+        correctAnswers: correctAnswers + action.payload,
+      };
+
     case ActionType.INCREMENT_MISTAKES:
       return {
         ...state,
-        mistakes: state.mistakes + action.payload,
+        mistakes: mistakes + action.payload,
       };
 
     case ActionType.SET_GAME_STATUS:
