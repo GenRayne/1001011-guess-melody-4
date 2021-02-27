@@ -50,21 +50,21 @@ const AudioPlayer = ({src, isNowPlaying, onPlayButtonClick}) => {
 
   const buttonName = isNowPlaying ? capitalizeFirstLetter(PlayerAction.PAUSE) : capitalizeFirstLetter(PlayerAction.PLAY);
 
-  const trackLineStyle = () => {
-    if (progress && duration) {
-      const percentage = (progress / duration * 100).toFixed(3);
-
-      return {
-        backgroundImage:
-          `linear-gradient(to right,
-            ${Color.ORANGE},
-            ${Color.ORANGE} ${percentage}%,
-            ${Color.TRANSPARENT} ${percentage}%,
-            ${Color.TRANSPARENT}
-          )`
-      };
+  const getTrackLineStyle = () => {
+    if (!progress || !duration) {
+      return undefined;
     }
-    return undefined;
+    const percentage = (progress / duration * 100).toFixed(3);
+
+    return {
+      backgroundImage:
+        `linear-gradient(to right,
+          ${Color.ORANGE},
+          ${Color.ORANGE} ${percentage}%,
+          ${Color.TRANSPARENT} ${percentage}%,
+          ${Color.TRANSPARENT}
+        )`
+    };
   };
 
   return (
@@ -77,7 +77,7 @@ const AudioPlayer = ({src, isNowPlaying, onPlayButtonClick}) => {
         onClick={onPlayButtonClick}
       />
       <div className="track__status">
-        <div className="track__status-line" style={trackLineStyle()} />
+        <div className="track__status-line" style={getTrackLineStyle()} />
         <audio ref={audioRef} />
       </div>
     </>
