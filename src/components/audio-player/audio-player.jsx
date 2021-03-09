@@ -1,7 +1,7 @@
 import React, {createRef, useState, useEffect} from 'react';
 import {string, bool, func} from 'prop-types';
 import {Color} from '../../const';
-import {capitalizeFirstLetter} from '../../utils.js';
+import {capitalizeFirstLetter, getPercentage} from '../../utils.js';
 
 const PlayerAction = {
   PLAY: `play`,
@@ -54,7 +54,7 @@ const AudioPlayer = ({src, isNowPlaying, onPlayButtonClick}) => {
     if (!progress || !duration) {
       return undefined;
     }
-    const percentage = (progress / duration * 100).toFixed(3);
+    const percentage = getPercentage(progress, duration).toFixed(3);
 
     return {
       backgroundImage:

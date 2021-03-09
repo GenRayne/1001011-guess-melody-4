@@ -14,6 +14,7 @@ const maxMistakes = 3;
 describe(`Render App`, () => {
   it(`renders WelcomeScreen`, () => {
     const store = mockStore({
+      correctAnswers: 0,
       mistakes: 0,
       step: -1,
       questions,
@@ -35,6 +36,7 @@ describe(`Render App`, () => {
 
   it(`renders QuestionGenre`, () => {
     const store = mockStore({
+      correctAnswers: 0,
       mistakes: 0,
       step: 0,
       questions,
@@ -61,6 +63,7 @@ describe(`Render App`, () => {
 
   it(`renders QuestionArtist`, () => {
     const store = mockStore({
+      correctAnswers: 0,
       mistakes: 0,
       step: 1,
       questions,
@@ -87,6 +90,7 @@ describe(`Render App`, () => {
 
   it(`renders FailScreen`, () => {
     const store = mockStore({
+      correctAnswers: 0,
       mistakes: 3,
       step: 2,
       questions,
@@ -108,6 +112,7 @@ describe(`Render App`, () => {
 
   it(`renders SuccessScreen`, () => {
     const store = mockStore({
+      correctAnswers: 3,
       mistakes: 0,
       step: 3,
       questions,
