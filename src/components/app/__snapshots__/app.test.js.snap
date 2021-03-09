@@ -1,5 +1,39 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
+exports[`Render App renders FailScreen 1`] = `
+<section
+  className="result"
+>
+  <div
+    className="result__logo"
+  >
+    <img
+      alt="Угадай мелодию"
+      height="83"
+      src="img/melody-logo.png"
+      width="186"
+    />
+  </div>
+  <h2
+    className="result__title"
+  >
+    Какая жалость!
+  </h2>
+  <p
+    className="result__total result__total--fail"
+  >
+    У вас закончились все попытки. Ничего, повезёт в следующий раз!
+  </p>
+  <button
+    className="replay"
+    onClick={[Function]}
+    type="button"
+  >
+    Попробовать ещё раз
+  </button>
+</section>
+`;
+
 exports[`Render App renders QuestionArtist 1`] = `
 <section
   className="game game--artist"
@@ -69,6 +103,9 @@ exports[`Render App renders QuestionArtist 1`] = `
         <div
           className="track__status"
         >
+          <div
+            className="track__status-line"
+          />
           <audio />
         </div>
       </div>
@@ -94,7 +131,7 @@ exports[`Render App renders QuestionArtist 1`] = `
           <img
             alt="John Snow"
             className="artist__picture"
-            src="https://api.adorable.io/avatars/128/10"
+            src="https://i.pravatar.cc/128?rnd=1"
           />
           John Snow
         </label>
@@ -117,7 +154,7 @@ exports[`Render App renders QuestionArtist 1`] = `
           <img
             alt="Jack Daniels"
             className="artist__picture"
-            src="https://api.adorable.io/avatars/128/16"
+            src="https://i.pravatar.cc/128?rnd=2"
           />
           Jack Daniels
         </label>
@@ -140,7 +177,7 @@ exports[`Render App renders QuestionArtist 1`] = `
           <img
             alt="Jim Beam"
             className="artist__picture"
-            src="https://api.adorable.io/avatars/128/24"
+            src="https://i.pravatar.cc/128?rnd=3"
           />
           Jim Beam
         </label>
@@ -220,6 +257,9 @@ exports[`Render App renders QuestionGenre 1`] = `
         <div
           className="track__status"
         >
+          <div
+            className="track__status-line"
+          />
           <audio />
         </div>
         <div
@@ -255,6 +295,9 @@ exports[`Render App renders QuestionGenre 1`] = `
         <div
           className="track__status"
         >
+          <div
+            className="track__status-line"
+          />
           <audio />
         </div>
         <div
@@ -290,6 +333,9 @@ exports[`Render App renders QuestionGenre 1`] = `
         <div
           className="track__status"
         >
+          <div
+            className="track__status-line"
+          />
           <audio />
         </div>
         <div
@@ -325,6 +371,9 @@ exports[`Render App renders QuestionGenre 1`] = `
         <div
           className="track__status"
         >
+          <div
+            className="track__status-line"
+          />
           <audio />
         </div>
         <div
@@ -355,6 +404,47 @@ exports[`Render App renders QuestionGenre 1`] = `
       </button>
     </form>
   </section>
+</section>
+`;
+
+exports[`Render App renders SuccessScreen 1`] = `
+<section
+  className="result"
+>
+  <div
+    className="result__logo"
+  >
+    <img
+      alt="Угадай мелодию"
+      height="83"
+      src="img/melody-logo.png"
+      width="186"
+    />
+  </div>
+  <h2
+    className="result__title"
+  >
+    Вы настоящий меломан!
+  </h2>
+  <p
+    className="result__total"
+  >
+    Вы ответили правильно на 
+    3
+     
+    вопроса
+     и совершили 
+    0
+     
+    ошибок
+  </p>
+  <button
+    className="replay"
+    onClick={[Function]}
+    type="button"
+  >
+    Попробовать ещё раз
+  </button>
 </section>
 `;
 
@@ -401,7 +491,9 @@ exports[`Render App renders WelcomeScreen 1`] = `
     <li>
       Можно допустить 
       3
-       ошибки.
+       
+      ошибки
+      .
     </li>
   </ul>
   <p

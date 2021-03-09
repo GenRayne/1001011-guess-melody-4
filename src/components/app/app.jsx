@@ -6,18 +6,20 @@ import WelcomeScreen from '../welcome-screen/welcome-screen.jsx';
 import QuestionArtistScreen from '../question-artist/question-artist.jsx';
 import QuestionGenreScreen from '../question-genre/question-genre.jsx';
 import {GameScreen} from '../game-screen/game-screen.jsx';
-import {QuestionType} from '../../const.js';
+import {FailScreen} from '../fail-screen/fail-screen.jsx';
+import {SuccessScreen} from '../success-screen/success-screen.jsx';
+import {QuestionType, GameStatus} from '../../const.js';
 import {isAnswerCorrect} from '../../utils';
-
-const START_STEP = -1;
 
 export const App = () => {
   const dispatch = useDispatch();
-  const {step, mistakes, maxMistakes, questions} = useSelector((state) => ({
+  const {step, correctAnswers, mistakes, maxMistakes, questions, gameStatus} = useSelector((state) => ({
     step: state.step,
+    correctAnswers: state.correctAnswers,
     mistakes: state.mistakes,
     maxMistakes: state.maxMistakes,
     questions: state.questions,
+    gameStatus: state.gameStatus,
   }));
 
   const onPlayButtonClick = () => {
@@ -27,53 +29,60 @@ export const App = () => {
   const onUserAnswer = (question, answer) => {
     const isCorrect = isAnswerCorrect(question, answer);
 
-    if (!isCorrect) {
+    if (isCorrect) {
+      dispatch(ActionCreator.incrementCorrectAnswers());
+    } else {
       dispatch(ActionCreator.incrementMistakes());
     }
-
-    if (step + 1 >= questions.length || (!isCorrect && mistakes + 1 >= maxMistakes)) {
-      dispatch(ActionCreator.returnToStart());
-    } else {
-      dispatch(ActionCreator.incrementStep());
-    }
+    dispatch(ActionCreator.incrementStep());
   };
 
   const renderGameScreen = () => {
     const currentQuestion = questions[step];
 
-    if (step === START_STEP || step >= questions.length) {
-      return (
-        <WelcomeScreen
-          mistakesCount={maxMistakes}
-          onPlayButtonClick={onPlayButtonClick}
-        />
-      );
-    }
+    switch (gameStatus) {
+      case GameStatus.START:
+        return (
+          <WelcomeScreen
+            mistakesCount={maxMistakes}
+            onPlayButtonClick={onPlayButtonClick}
+          />
+        );
 
-    if (currentQuestion) {
-      switch (currentQuestion.type) {
-        case QuestionType.ARTIST:
-          return (
-            <GameScreen type={QuestionType.ARTIST}>
-              <QuestionArtistScreen
-                question={currentQuestion}
-                onAnswer={onUserAnswer}
-              />
-            </GameScreen>
-          );
-        case QuestionType.GENRE:
-          return (
-            <GameScreen type={QuestionType.GENRE}>
-              <QuestionGenreScreen
-                question={currentQuestion}
-                onAnswer={onUserAnswer}
-              />
-            </GameScreen>
-          );
-      }
-    }
+      case GameStatus.FAIL:
+        return <FailScreen />;
 
-    return null;
+      case GameStatus.SUCCESS:
+        return <SuccessScreen correctAnswersCount={correctAnswers} mistakesCount={mistakes} />;
+
+      case GameStatus.QUESTION:
+        if (currentQuestion) {
+          switch (currentQuestion.type) {
+            case QuestionType.ARTIST:
+              return (
+                <GameScreen type={QuestionType.ARTIST}>
+                  <QuestionArtistScreen
+                    question={currentQuestion}
+                    onAnswer={onUserAnswer}
+                  />
+                </GameScreen>
+              );
+            case QuestionType.GENRE:
+              return (
+                <GameScreen type={QuestionType.GENRE}>
+                  <QuestionGenreScreen
+                    question={currentQuestion}
+                    onAnswer={onUserAnswer}
+                  />
+                </GameScreen>
+              );
+          }
+        }
+        break;
+
+      default:
+        return null;
+    }
   };
 
   return (

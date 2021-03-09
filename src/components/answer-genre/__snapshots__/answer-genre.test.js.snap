@@ -14,6 +14,9 @@ exports[`render AnswerGenre renders AnswerGenre 1`] = `
   <div
     className="track__status"
   >
+    <div
+      className="track__status-line"
+    />
     <audio />
   </div>
   <div

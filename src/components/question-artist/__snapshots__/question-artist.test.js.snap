@@ -23,6 +23,9 @@ Array [
       <div
         className="track__status"
       >
+        <div
+          className="track__status-line"
+        />
         <audio />
       </div>
     </div>
@@ -48,7 +51,7 @@ Array [
         <img
           alt="John Snow"
           className="artist__picture"
-          src="https://api.adorable.io/avatars/128/10"
+          src="https://i.pravatar.cc/128?rnd=1"
         />
         John Snow
       </label>
@@ -71,7 +74,7 @@ Array [
         <img
           alt="Jack Daniels"
           className="artist__picture"
-          src="https://api.adorable.io/avatars/128/16"
+          src="https://i.pravatar.cc/128?rnd=2"
         />
         Jack Daniels
       </label>
@@ -94,7 +97,7 @@ Array [
         <img
           alt="Jim Beam"
           className="artist__picture"
-          src="https://api.adorable.io/avatars/128/24"
+          src="https://i.pravatar.cc/128?rnd=3"
         />
         Jim Beam
       </label>

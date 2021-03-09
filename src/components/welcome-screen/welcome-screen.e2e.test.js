@@ -1,5 +1,6 @@
 import React from 'react';
 import {shallow} from 'enzyme';
+import '../../i18n';
 import WelcomeScreen from './welcome-screen.jsx';
 
 describe(`Play button click`, () => {

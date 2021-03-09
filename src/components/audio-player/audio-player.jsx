@@ -1,6 +1,7 @@
 import React, {createRef, useState, useEffect} from 'react';
 import {string, bool, func} from 'prop-types';
-import {capitalizeFirstLetter} from '../../utils.js';
+import {Color} from '../../const';
+import {capitalizeFirstLetter, getPercentage} from '../../utils.js';
 
 const PlayerAction = {
   PLAY: `play`,
@@ -10,7 +11,8 @@ const PlayerAction = {
 const AudioPlayer = ({src, isNowPlaying, onPlayButtonClick}) => {
   const audioRef = createRef();
 
-  const [, setProgress] = useState(0);
+  const [progress, setProgress] = useState(0);
+  const [duration, setDuration] = useState(0);
   const [isLoading, setIsLoading] = useState(true);
 
   // componentDidMount
@@ -19,13 +21,19 @@ const AudioPlayer = ({src, isNowPlaying, onPlayButtonClick}) => {
     audio.src = src;
 
     audio.oncanplaythrough = () => setIsLoading(false);
-    audio.ontimeupdate = () => setProgress(audio.currentTime);
+    audio.ontimeupdate = () => {
+      setProgress(Math.floor(audio.currentTime));
+      if (!duration) {
+        setDuration(audio.duration);
+      }
+    };
 
     // componentWillUnmount
     return () => {
       audio.src = ``;
       audio.oncanplaythrough = null;
       audio.ontimeupdate = null;
+      setDuration(null);
     };
   }, []);
 
@@ -42,6 +50,23 @@ const AudioPlayer = ({src, isNowPlaying, onPlayButtonClick}) => {
 
   const buttonName = isNowPlaying ? capitalizeFirstLetter(PlayerAction.PAUSE) : capitalizeFirstLetter(PlayerAction.PLAY);
 
+  const getTrackLineStyle = () => {
+    if (!progress || !duration) {
+      return undefined;
+    }
+    const percentage = getPercentage(progress, duration).toFixed(3);
+
+    return {
+      backgroundImage:
+        `linear-gradient(to right,
+          ${Color.ORANGE},
+          ${Color.ORANGE} ${percentage}%,
+          ${Color.TRANSPARENT} ${percentage}%,
+          ${Color.TRANSPARENT}
+        )`
+    };
+  };
+
   return (
     <>
       <button
@@ -52,6 +77,7 @@ const AudioPlayer = ({src, isNowPlaying, onPlayButtonClick}) => {
         onClick={onPlayButtonClick}
       />
       <div className="track__status">
+        <div className="track__status-line" style={getTrackLineStyle()} />
         <audio ref={audioRef} />
       </div>
     </>

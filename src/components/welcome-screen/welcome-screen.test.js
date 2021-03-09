@@ -1,5 +1,6 @@
 import React from 'react';
 import renderer from 'react-test-renderer';
+import '../../i18n';
 import WelcomeScreen from './welcome-screen.jsx';
 
 describe(`Render WelcomeScreen`, () => {

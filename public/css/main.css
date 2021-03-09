@@ -757,6 +757,7 @@ img {
     background-position: -5px -294px; }
 
 .track__status {
+  position: relative;
   height: 55px;
   flex-grow: 1;
   background-image: url("../img/player-background.png");
@@ -766,6 +767,14 @@ img {
           animation: fadein 1000ms ease-out;
   -webkit-animation-iteration-count: 1;
           animation-iteration-count: 1; }
+
+.track__status-line {
+  position: absolute;
+  left: 0;
+  bottom: -2px;
+  width: 100%;
+  height: 3px;
+}
 
 @keyframes fadein {
   0% {

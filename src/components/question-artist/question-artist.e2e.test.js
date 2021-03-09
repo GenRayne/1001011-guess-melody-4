@@ -1,14 +1,14 @@
 import React from 'react';
 import {mount} from 'enzyme';
 import QuestionArtist from './question-artist.jsx';
-import questions from '../../mocks/test-questions.js';
+import questions, {AVATAR_URL} from '../../mocks/test-questions.js';
 
 describe(`pass userAnswer data to the callback`, () => {
   it(`passes a data object from the answer that was clicked`, () => {
     const handleAnswer = jest.fn();
     const userAnswer = {
       id: `1`,
-      picture: `https://api.adorable.io/avatars/128/10`,
+      picture: `${AVATAR_URL}?rnd=1`,
       artist: `John Snow`,
     };
 

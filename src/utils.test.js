@@ -1,6 +1,11 @@
-import {capitalizeFirstLetter} from './utils.js';
+import {
+  capitalizeFirstLetter,
+  isGenreAnswerCorrect,
+  isArtistAnswerCorrect,
+  isAnswerCorrect,
+  getPercentage,
+} from './utils.js';
 import {genreQuestion, artistQuestion} from './mocks/test-questions.js';
-import {isGenreAnswerCorrect, isArtistAnswerCorrect, isAnswerCorrect} from './utils.js';
 
 describe(`capitalize`, () => {
   it(`capitalizes the first letter`, () => {
@@ -38,5 +43,16 @@ describe(`answer correctness`, () => {
   it(`returns false if answer is incorrect`, () => {
     expect(isAnswerCorrect(genreQuestion, {2: true})).toEqual(false);
     expect(isAnswerCorrect(artistQuestion, {artist: `incorrect`})).toEqual(false);
+  });
+});
+
+describe(`calculate trackLine percentage`, () => {
+  it(`calulates percentage correctly`, () => {
+    const duration = 100;
+    const progress = 30;
+
+    const percentage = getPercentage(progress, duration);
+
+    expect(percentage).toEqual(30);
   });
 });

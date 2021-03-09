@@ -12,6 +12,9 @@ Array [
   <div
     className="track__status"
   >
+    <div
+      className="track__status-line"
+    />
     <audio />
   </div>,
 ]

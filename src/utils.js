@@ -28,3 +28,5 @@ export const isAnswerCorrect = (question, userAnswer) => {
       return false;
   }
 };
+
+export const getPercentage = (partialAmount, wholeAmount) => partialAmount / wholeAmount * 100;
